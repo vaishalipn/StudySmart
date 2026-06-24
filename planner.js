@@ -20,7 +20,7 @@ async function generatePlan() {
     if (pdfFile) formData.append("pdf", pdfFile);
 
     try {
-        const response = await fetch("http://localhost:3001/generate-plan", {
+        const response = await fetch("https://studysmart-backend-aec9.onrender.com/generate-plan", {
             method: "POST",
             body: formData
         });

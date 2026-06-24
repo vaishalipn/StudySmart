@@ -22,7 +22,7 @@ async function generateNotes() {
     try {
         // IMPORTANT: We use the same localhost port your planner uses
         // Note: You might need to add a '/generate-notes' route to your server.js
-        const response = await fetch("http://localhost:3001/generate-notes", {
+        const response = await fetch("https://studysmart-backend-aec9.onrender.com/generate-notes", {
             method: "POST",
             body: formData
         });

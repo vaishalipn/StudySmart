@@ -28,7 +28,7 @@ async function generateQuiz() {
     try {
 
         const response = await fetch(
-            "http://localhost:3001/generate-quiz",
+            "https://studysmart-backend-aec9.onrender.com/generate-quiz",
             {
                 method: "POST",
                 body: formData
