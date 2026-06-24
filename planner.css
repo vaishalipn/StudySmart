@@ -1,0 +1,234 @@
+:root {
+    --nav-bg: #2160c6; /* Deep Professional Blue/Navy */
+    --primary-indigo: #6366f1;
+    --accent-blue: #3b82f6;
+    --text-main: #f8fafc;
+    --card-bg: rgba(255, 255, 255, 0.95);
+}
+
+body {
+    background-color: #f1f5f9; /* Soft grey background to make cards pop */
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Professional Navbar */
+.header {
+    background: var(--nav-bg);
+    padding: 15px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--text-main);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    margin-bottom: 40px;
+}
+
+.header h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    letter-spacing: -0.5px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.header h3 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 400;
+    opacity: 0.9;
+}
+
+/* Main Layout Grid */
+.main {
+    display: grid;
+    grid-template-columns: 350px 1fr;
+    gap: 30px;
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 20px 40px 20px;
+}
+
+/* Professional Cards */
+.card {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 28px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05), 0 10px 15px -5px rgba(0,0,0,0.05);
+    border: 1px solid #e2e8f0;
+}
+
+h3 {
+    color: #0f172a;
+    font-size: 1.25rem;
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Styled Input Fields */
+label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #64748b;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+input, select {
+    width: 100%;
+    padding: 12px 16px;
+    margin-bottom: 20px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    background: #ffffff;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+    box-sizing: border-box;
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: var(--primary-indigo);
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+}
+
+/* Premium Button */
+button {
+    width: 100%;
+    background: linear-gradient(to right, var(--primary-indigo), var(--accent-blue));
+    color: white;
+    padding: 14px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.1s ease, opacity 0.2s ease;
+    margin-top: 10px;
+}
+
+button:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+/* Output Area Style */
+.output-box {
+    background: #ffffff;
+    border-radius: 8px;
+    padding: 25px;
+    border: 1px dashed #cbd5e1;
+    min-height: 400px;
+    color: #334155;
+    line-height: 1.7;
+}
+/* Style the overall text flow */
+.output-box {
+    line-height: 1.8;
+    color: #334155;
+}
+
+/* Style the Day Headers (### in Markdown) */
+.output-box h3 {
+    color: #6366f1;
+    background: #f1f5f9;
+    padding: 10px 15px;
+    border-radius: 6px;
+    margin-top: 30px;
+    border-left: 4px solid #6366f1;
+    font-size: 1.1rem;
+}
+
+/* Style Bold labels like "Goal:" or "Task:" */
+.output-box strong {
+    color: #1e293b;
+    background: #eef2ff;
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+/* Style Lists (The bullet points) */
+.output-box ul {
+    padding-left: 20px;
+    list-style-type: none;
+}
+
+.output-box li {
+    margin-bottom: 12px;
+    position: relative;
+    padding-left: 25px;
+}
+
+/* Add a custom checkmark or bullet icon */
+.output-box li::before {
+    content: "🎯";
+    position: absolute;
+    left: 0;
+    font-size: 0.9rem;
+}
+/* 1. Make the main container align items to the top */
+.main {
+    display: grid;
+    grid-template-columns: 380px 1fr;
+    gap: 30px;
+    max-width: 1400px;
+    margin: 40px auto;
+    padding: 0 20px;
+    align-items: start; /* This is crucial for sticky to work */
+}
+
+/* 2. Make the input card stay put */
+.card:first-child {
+    position: -webkit-sticky; /* For Safari */
+    position: sticky;
+    top: 20px; /* Distance from the top of the window when scrolling */
+    max-height: calc(100vh - 80px); /* Ensures the card itself doesn't exceed screen height */
+    overflow-y: auto; /* Adds a scrollbar INSIDE the card if it's too tall for the screen */
+}
+
+/* 3. Ensure the output card can grow as long as needed */
+.card.big {
+    min-height: 100vh; /* Optional: ensures it looks balanced */
+}
+
+/* 4. Remove any fixed height from the output box so the whole page scrolls */
+.output-box {
+    height: auto; 
+    min-height: 400px;
+    overflow-y: visible; /* Let the main page scroll handle the content */
+}
+.card {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 28px;
+    border: 1px solid rgba(99, 102, 241, 0.2); /* Light indigo border */
+    
+    /* This creates the professional blue shadow/glow */
+    box-shadow: 
+        0 10px 25px -5px rgba(0, 0, 0, 0.05),   /* Subtle dark depth */
+        0 8px 20px -6px rgba(99, 102, 241, 0.2); /* Soft light blue glow */
+    
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Add a hover effect to make the glow stronger when you mouse over it */
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 
+        0 20px 30px -10px rgba(0, 0, 0, 0.07),
+        0 12px 25px -5px rgba(99, 102, 241, 0.4); /* Stronger blue glow on hover */
+}
+.illustration-box img {
+    width: 180px; /* Adjust based on your image size */
+    height: auto;
+}

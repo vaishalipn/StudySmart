@@ -1,0 +1,124 @@
+:root {
+    --primary-blue: #2563eb;
+    --navy-bg: #1e3a8a;
+    --light-blue-glow: rgba(59, 130, 246, 0.3);
+    --glass-bg: rgba(255, 255, 255, 0.95);
+}
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8fafc; /* Clean light grey/blue background */
+    color: #334155;
+}
+
+/* Header Styling - Matches your Navy Blue brand */
+.header {
+    background-color: var(--navy-bg);
+    padding: 15px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Main Layout */
+.main-container {
+    display: grid;
+    grid-template-columns: 380px 1fr;
+    gap: 30px;
+    max-width: 1400px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+/* Common Card Styling */
+.sidebar-card, .content-card {
+    background: var(--glass-bg);
+    border-radius: 16px;
+    padding: 30px;
+    border: 1px solid rgba(226, 232, 240, 0.8);
+    
+    /* The Light Blue Glow Highlight Shadow */
+    box-shadow: 
+        0 10px 25px -5px rgba(0, 0, 0, 0.05),
+        0 8px 20px -6px var(--light-blue-glow);
+}
+
+.sidebar-card {
+    position: sticky;
+    top: 20px;
+    height: fit-content;
+}
+
+/* Illustration Box placement */
+.illustration-box {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.illustration-box img {
+    width: 180px; /* Adjust based on your image size */
+    height: auto;
+}
+
+/* Input Styling */
+.input-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: #64748b;
+}
+
+input[type="text"], .file-upload {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    background-color: #f1f5f9;
+    box-sizing: border-box;
+}
+
+/* Glowing Button */
+.generate-btn {
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(135deg, #6366f1, #3b82f6);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    margin-top: 10px;
+}
+
+.generate-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.5);
+}
+
+/* Output Display Area */
+.content-card h3 {
+    margin-top: 0;
+    border-bottom: 2px solid #f1f5f9;
+    padding-bottom: 15px;
+}
+
+.output-display {
+    min-height: 500px;
+    line-height: 1.6;
+}
+
+.placeholder-text {
+    color: #94a3b8;
+    text-align: center;
+    margin-top: 100px;
+}

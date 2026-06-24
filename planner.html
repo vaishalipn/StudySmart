@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Planner - StudySmart</title>
+    <link rel="stylesheet" href="planner.css">
+</head>
+
+<body>
+
+<header class="header">
+    <h3>🎓 StudySmart</h3>
+    <h3>Hello, Buddy 👋</h3>
+</header>
+
+<section class="main">
+
+    <div class="card">
+        <h3>📚 Create Study Plan</h3>
+        <div class="illustration-box">
+        <img src="images/study-planner.png" alt="AI Notes">
+        </div>
+
+        <label>Class 👩‍🏫</label>
+        <select id="class">
+            <option>8th</option>
+            <option>9th</option>
+            <option>10th</option>
+            <option>11th</option>
+            <option>12th</option>
+            <option>Engineering</option>
+            <option>MBBS</option>
+            <option>others</option>
+        </select>
+
+        <label>Subject 📙</label>
+        <input type="text" id="subject" placeholder="e.g. Physics">
+
+        <label>Topic 📖</label>
+        <input type="text" id="topic" placeholder="e.g. Thermodynamics">
+
+        <label>Upload PDF (Optional) 📄</label>
+        <input type="file" id="pdfFile" accept=".pdf">
+
+        <label>Hours per day 🕘</label>
+        <select id="hours">
+            <option value="1">1 hour</option>
+            <option value="2">2 hours</option>
+            <option value="3">3 hours</option>
+            <option value="4">4 hours</option>
+            <option value="5">5 hours</option>
+            <option value="3">6 hours</option>
+            <option value="4">7 hours</option>
+            <option value="5">8 hours</option>
+            <option value="3">9 hours</option>
+            <option value="4">10 hours</option>
+            <option value="5">11 hours</option>
+            <option value="3">12 hours</option>
+            <option value="4">13 hours</option>
+            <option value="5">14 hours</option>
+        </select>
+
+        <label>Number of Days 📆</label>
+        <input type="number" id="days" placeholder="e.g. 7">
+
+        <button onclick="generatePlan()">✨ Generate Smart Plan ✨</button>
+    </div>
+
+    <div class="card big">
+        <h3>Your Personalized Study Plan</h3>
+        <div id="output" class="output-box">
+            Your plan will appear here...
+        </div>
+    </div>
+
+</section>
+
+<script src="planner.js"></script>
+
+</body>
+</html>

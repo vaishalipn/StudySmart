@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Notes - StudySmart</title>
+    <link rel="stylesheet" href="notes.css">
+</head>
+<body>
+    
+    <header class="header">
+        <div class="logo"><h3>🎓 StudySmart Notes</h3></div>
+        <div class="user-greeting"><h3>Hello, Buddy 👋</h3></div>
+    </header>
+
+    <main class="main-container">
+        <aside class="sidebar-card">
+            
+            <div class="illustration-box">
+                <img src="images/ai-notes.png" alt="AI Notes">
+            </div>
+
+            <div class="input-group">
+                <label>SUBJECT 📕</label>
+                <input type="text" id="subject" placeholder="e.g., Computer Science">
+            </div>
+
+            <div class="input-group">
+                <label>TOPIC 📖</label>
+                <input type="text" id="topic" placeholder="e.g., Data Structures">
+            </div>
+
+            <div class="input-group">
+                <label>UPLOAD SOURCE (PDF/TXT) 📄</label>
+                <div class="file-upload">
+                    <input type="file" id="notesSource" accept=".pdf,.txt">
+                </div>
+            </div>
+
+            <button class="generate-btn" onclick="generateNotes()">
+                ✨ Generate Smart Notes ✨
+            </button>
+        </aside>
+
+        <section class="content-card">
+            <h3>Your Personalized Study Notes</h3>
+            <div id="notes-output" class="output-display">
+                <p class="placeholder-text">Your professional notes will appear here once generated...</p>
+            </div>
+        </section>
+    </main>
+
+    <script src="notes.js"></script>
+</body>
+</html>

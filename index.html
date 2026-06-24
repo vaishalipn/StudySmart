@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<title>StudySmart</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header>
+    <h2 class="logo">🎓StudySmart</h2>
+
+    <nav>
+        <a href="#">Home</a>
+        <a href="planner.html">Planner</a>
+        <a href="ai-notes.html">AI Notes</a>
+        <a href="mcq.html">MCQ Practice</a>
+        <a href="#about">About</a>
+    </nav>
+
+    <button class="start-btn" onclick="goToPlanner()">Start Planning</button>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+
+    <div class="hero-text">
+        <h1>Smart Study Planner</h1>
+        <p>Plan Smarter. Study Better.</p>
+
+        <div class="hero-buttons">
+            <button class="btn primary" onclick="goToPlanner()">Start Planning</button>
+            <button class="btn secondary" onclick="location.href='ai-notes.html'">Try AI Notes</button>
+        </div>
+    </div>
+
+    <div class="hero-image">
+        <img src="images/hero2.png" alt="Study illustration">
+    </div>
+
+</section>
+
+<!-- WAVE -->
+<div class="wave">
+    <svg viewBox="0 0 1440 200">
+        <path fill="#ffffff"
+        d="M0,160C240,220,480,100,720,160C960,220,1200,100,1440,160L1440,320L0,320Z"></path>
+    </svg>
+</div>
+
+<!-- FEATURES -->
+<section class="features" id="features">
+
+    <h2>Our Features</h2>
+
+    <div class="cards">
+
+        <div class="card" onclick="openPlanner()">
+            <img src="images/study-planner.png" alt="Planner">
+            <h3>📊 Study Planner</h3>
+            <p>Organize your study sessions and track progress.</p>
+        </div>
+
+        <div class="card" onclick="openNotes()">
+            <img src="images/ai-notes.png" alt="AI Notes">
+            <h3>🤖 AI Revision Notes</h3>
+            <p>Generate quick summaries instantly.</p>
+        </div>
+
+        <div class="card" onclick="openQuiz()">
+            <img src="images/mcq-practice.png" alt="MCQ Practice">
+            <h3>🧠 MCQ Practice</h3>
+            <p>Test your knowledge with quizzes.</p>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- QUOTE -->
+<section class="quote">
+
+    <div class="quote-box">
+
+        <div class="quote-text">
+            <p>"Dream, dream, dream. Dreams transform into thoughts and thoughts result in action."</p>
+            <h4>— A. P. J. Abdul Kalam</h4>
+        </div>
+
+        <div class="quote-img">
+            <img src="images/quote.png" alt="Quote illustration">
+        </div>
+
+    </div>
+
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <p>Plan, Revise, and Practice Smarter.</p>
+    <p>© 2026 StudySmart</p>
+</footer>
+
+<script src="script.js"></script>
+<script>
+    function openPlanner() {
+        window.location.href = "planner.html";
+    }
+
+    function openNotes() {
+        window.location.href = "ai-notes.html";
+    }
+
+    function openQuiz() {
+        window.location.href = "mcq.html";
+    }
+</script>
+</body>
+</html>
