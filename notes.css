@@ -1,124 +1,675 @@
+/* =====================================================
+   VARIABLES
+===================================================== */
+
 :root {
+
     --primary-blue: #2563eb;
+
     --navy-bg: #1e3a8a;
-    --light-blue-glow: rgba(59, 130, 246, 0.3);
-    --glass-bg: rgba(255, 255, 255, 0.95);
+
+    --light-blue-glow:
+        rgba(59,130,246,0.3);
+
+    --glass-bg:
+        rgba(255,255,255,0.95);
+
 }
+
+
+/* =====================================================
+   RESET
+===================================================== */
+
+* {
+
+    box-sizing: border-box;
+
+}
+
+
+html {
+
+    scroll-behavior: smooth;
+
+}
+
 
 body {
+
     margin: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f8fafc; /* Clean light grey/blue background */
+
+    font-family:
+        'Segoe UI',
+        Tahoma,
+        Geneva,
+        Verdana,
+        sans-serif;
+
+    background-color: #f8fafc;
+
     color: #334155;
+
+    overflow-x: hidden;
+
 }
 
-/* Header Styling - Matches your Navy Blue brand */
+
+/* =====================================================
+   HEADER
+===================================================== */
+
 .header {
-    background-color: var(--navy-bg);
+
+    background-color:
+        var(--navy-bg);
+
     padding: 15px 40px;
+
     display: flex;
+
     justify-content: space-between;
+
     align-items: center;
+
     color: white;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+
+    box-shadow:
+        0 4px 10px
+        rgba(0,0,0,0.1);
+
 }
 
-/* Main Layout */
+
+.header h3 {
+
+    margin: 0;
+
+}
+
+
+/* =====================================================
+   MAIN
+===================================================== */
+
 .main-container {
+
     display: grid;
-    grid-template-columns: 380px 1fr;
+
+    grid-template-columns:
+        380px minmax(0,1fr);
+
     gap: 30px;
+
     max-width: 1400px;
+
     margin: 40px auto;
+
     padding: 0 20px;
+
 }
 
-/* Common Card Styling */
-.sidebar-card, .content-card {
-    background: var(--glass-bg);
+
+/* =====================================================
+   CARDS
+===================================================== */
+
+.sidebar-card,
+.content-card {
+
+    background:
+        var(--glass-bg);
+
     border-radius: 16px;
+
     padding: 30px;
-    border: 1px solid rgba(226, 232, 240, 0.8);
-    
-    /* The Light Blue Glow Highlight Shadow */
-    box-shadow: 
-        0 10px 25px -5px rgba(0, 0, 0, 0.05),
-        0 8px 20px -6px var(--light-blue-glow);
+
+    border:
+        1px solid
+        rgba(226,232,240,0.8);
+
+    box-shadow:
+
+        0 10px 25px -5px
+        rgba(0,0,0,0.05),
+
+        0 8px 20px -6px
+        var(--light-blue-glow);
+
 }
+
 
 .sidebar-card {
+
     position: sticky;
+
     top: 20px;
+
     height: fit-content;
+
 }
 
-/* Illustration Box placement */
+
+/* =====================================================
+   IMAGE
+===================================================== */
+
 .illustration-box {
+
     width: 100%;
+
     text-align: center;
+
     margin-bottom: 20px;
+
 }
+
 
 .illustration-box img {
-    width: 180px; /* Adjust based on your image size */
+
+    width: 180px;
+
+    max-width: 100%;
+
     height: auto;
+
 }
 
-/* Input Styling */
+
+/* =====================================================
+   INPUTS
+===================================================== */
+
 .input-group {
+
     margin-bottom: 20px;
+
 }
+
 
 label {
+
     display: block;
+
     font-size: 12px;
+
     font-weight: 700;
+
     margin-bottom: 8px;
+
     color: #64748b;
+
 }
 
-input[type="text"], .file-upload {
+
+input[type="text"],
+.file-upload {
+
     width: 100%;
+
     padding: 12px;
-    border: 1px solid #e2e8f0;
+
+    border:
+        1px solid #e2e8f0;
+
     border-radius: 8px;
+
     background-color: #f1f5f9;
-    box-sizing: border-box;
+
 }
 
-/* Glowing Button */
-.generate-btn {
-    width: 100%;
-    padding: 14px;
-    background: linear-gradient(135deg, #6366f1, #3b82f6);
-    color: white;
-    border: none;
-    border-radius: 10px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: transform 0.2s, box-shadow 0.2s;
-    margin-top: 10px;
+
+input[type="text"]:focus {
+
+    outline: none;
+
+    border-color:
+        var(--primary-blue);
+
 }
+
+
+.file-upload {
+
+    overflow: hidden;
+
+}
+
+
+.file-upload input {
+
+    width: 100%;
+
+    max-width: 100%;
+
+}
+
+
+/* =====================================================
+   BUTTON
+===================================================== */
+
+.generate-btn {
+
+    width: 100%;
+
+    padding: 14px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #6366f1,
+            #3b82f6
+        );
+
+    color: white;
+
+    border: none;
+
+    border-radius: 10px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+}
+
 
 .generate-btn:hover {
+
     transform: translateY(-2px);
-    box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.5);
+
+    box-shadow:
+        0 10px 15px -3px
+        rgba(59,130,246,0.5);
+
 }
 
-/* Output Display Area */
+
+/* =====================================================
+   OUTPUT
+===================================================== */
+
 .content-card h3 {
+
     margin-top: 0;
-    border-bottom: 2px solid #f1f5f9;
+
+    border-bottom:
+        2px solid #f1f5f9;
+
     padding-bottom: 15px;
+
 }
+
 
 .output-display {
+
     min-height: 500px;
+
+    line-height: 1.6;
+
+    overflow-wrap: anywhere;
+
+}
+
+
+.placeholder-text {
+
+    color: #94a3b8;
+
+    text-align: center;
+
+    margin-top: 100px;
+
+}
+
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media (max-width: 900px) {
+
+    .main-container {
+
+        grid-template-columns:
+            300px minmax(0,1fr);
+
+        gap: 20px;
+
+    }
+
+
+    .sidebar-card,
+    .content-card {
+
+        padding: 22px;
+
+    }
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 768px) {
+
+    .header {
+
+        padding: 15px 20px;
+
+    }
+
+
+    .header h3 {
+
+        font-size: 15px;
+
+    }
+
+
+    .main-container {
+
+        display: flex;
+
+        flex-direction: column;
+
+        width: 100%;
+
+        margin: 25px auto;
+
+        padding: 0 15px 30px;
+
+        gap: 20px;
+
+    }
+
+
+    .sidebar-card {
+
+        position: static;
+
+        width: 100%;
+
+    }
+
+
+    .content-card {
+
+        width: 100%;
+
+    }
+
+
+    .sidebar-card,
+    .content-card {
+
+        padding: 22px 18px;
+
+        border-radius: 14px;
+
+    }
+
+
+    .illustration-box img {
+
+        width: 150px;
+
+    }
+
+
+    .output-display {
+
+        min-height: 300px;
+
+        font-size: 14px;
+
+    }
+
+
+    .placeholder-text {
+
+        margin-top: 60px;
+
+        line-height: 1.6;
+
+    }
+
+}
+
+
+/* =====================================================
+   SMALL PHONES
+===================================================== */
+
+@media (max-width: 400px) {
+
+    .header {
+
+        padding: 14px 15px;
+
+    }
+
+
+    .header h3 {
+
+        font-size: 13px;
+
+    }
+
+
+    .main-container {
+
+        padding:
+            0 10px 25px;
+
+    }
+
+
+    .sidebar-card,
+    .content-card {
+
+        padding: 18px 15px;
+
+    }
+
+
+    .illustration-box img {
+
+        width: 130px;
+
+    }
+
+
+    input[type="text"] {
+
+        font-size: 16px;
+
+    }
+
+
+    .generate-btn {
+
+        padding: 13px;
+
+        font-size: 14px;
+
+    }
+
+
+    .content-card h3 {
+
+        font-size: 18px;
+
+    }
+
+}
+/* =====================================================
+   AI GENERATED NOTES
+===================================================== */
+
+#notes-output {
+    line-height: 1.7;
+    color: #1f2937;
+}
+
+
+/* =========================
+   HEADINGS
+========================= */
+
+.notes-heading {
+    color: #2563eb;
+    margin-top: 28px;
+    margin-bottom: 12px;
+    font-weight: 700;
+}
+
+.notes-heading:first-child {
+    margin-top: 0;
+}
+
+
+/* =========================
+   PARAGRAPHS
+========================= */
+
+.notes-paragraph {
+    margin: 10px 0;
+    line-height: 1.7;
+}
+
+
+/* =========================
+   LISTS
+========================= */
+
+.notes-list {
+    margin: 10px 0 18px 25px;
+    padding-left: 15px;
+}
+
+.notes-list li {
+    margin-bottom: 8px;
     line-height: 1.6;
 }
 
-.placeholder-text {
-    color: #94a3b8;
+.notes-list strong {
+    color: #1e40af;
+}
+
+
+/* =========================
+   DIVIDER
+========================= */
+
+.notes-divider {
+    border: none;
+    border-top: 1px solid #dbeafe;
+    margin: 25px 0;
+}
+
+
+/* =========================
+   TABLE
+========================= */
+
+.notes-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    margin: 18px 0 25px;
+    border-radius: 10px;
+}
+
+.notes-table {
+    width: 100%;
+    min-width: 600px;
+    border-collapse: collapse;
+    background: white;
+    font-size: 14px;
+}
+
+.notes-table th {
+    background: #2563eb;
+    color: white;
+    font-weight: 600;
+    text-align: left;
+    padding: 12px 14px;
+    border: 1px solid #dbeafe;
+}
+
+.notes-table td {
+    padding: 11px 14px;
+    border: 1px solid #dbeafe;
+    vertical-align: top;
+    line-height: 1.5;
+}
+
+.notes-table tr:nth-child(even) {
+    background: #f8fbff;
+}
+
+.notes-table tr:hover {
+    background: #eff6ff;
+}
+
+
+/* =========================
+   CODE
+========================= */
+
+#notes-output code {
+    background: #f1f5f9;
+    padding: 3px 6px;
+    border-radius: 5px;
+    font-family: monospace;
+}
+
+
+/* =========================
+   LOADING
+========================= */
+
+.loading-message {
     text-align: center;
-    margin-top: 100px;
+    padding: 30px;
+    font-size: 16px;
+    color: #2563eb;
+}
+
+
+/* =========================
+   ERROR
+========================= */
+
+.error-message {
+    background: #fef2f2;
+    color: #dc2626;
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid #fecaca;
+}
+
+
+/* =========================
+   MOBILE TABLE
+========================= */
+
+@media (max-width: 600px) {
+
+    .notes-table {
+        min-width: 550px;
+    }
+
+    .notes-table th,
+    .notes-table td {
+        padding: 9px 10px;
+        font-size: 13px;
+    }
+
+    .notes-heading {
+        margin-top: 22px;
+    }
 }

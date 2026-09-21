@@ -1,234 +1,669 @@
+/* =====================================================
+   VARIABLES
+===================================================== */
+
 :root {
-    --nav-bg: #2160c6; /* Deep Professional Blue/Navy */
+
+    --nav-bg: #2160c6;
+
     --primary-indigo: #6366f1;
+
     --accent-blue: #3b82f6;
+
     --text-main: #f8fafc;
-    --card-bg: rgba(255, 255, 255, 0.95);
+
+    --card-bg: rgba(255,255,255,0.95);
+
 }
+
+
+/* =====================================================
+   RESET
+===================================================== */
+
+* {
+
+    box-sizing: border-box;
+
+}
+
+
+html {
+
+    scroll-behavior: smooth;
+
+}
+
 
 body {
-    background-color: #f1f5f9; /* Soft grey background to make cards pop */
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+
+    background-color: #f1f5f9;
+
+    font-family:
+        'Inter',
+        system-ui,
+        -apple-system,
+        sans-serif;
+
     margin: 0;
+
     padding: 0;
+
+    color: #334155;
+
+    overflow-x: hidden;
+
 }
 
-/* Professional Navbar */
+
+/* =====================================================
+   HEADER
+===================================================== */
+
 .header {
+
     background: var(--nav-bg);
+
     padding: 15px 40px;
+
     display: flex;
+
     justify-content: space-between;
+
     align-items: center;
+
     color: var(--text-main);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    margin-bottom: 40px;
+
+    box-shadow:
+        0 4px 12px rgba(0,0,0,0.15);
+
 }
 
-.header h2 {
-    margin: 0;
-    font-size: 1.5rem;
-    letter-spacing: -0.5px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
 
 .header h3 {
+
     margin: 0;
+
     font-size: 1rem;
-    font-weight: 400;
-    opacity: 0.9;
+
+    font-weight: 500;
+
 }
 
-/* Main Layout Grid */
+
+/* =====================================================
+   MAIN
+===================================================== */
+
 .main {
+
     display: grid;
-    grid-template-columns: 350px 1fr;
+
+    grid-template-columns:
+        380px minmax(0, 1fr);
+
     gap: 30px;
-    max-width: 1300px;
-    margin: 0 auto;
-    padding: 0 20px 40px 20px;
+
+    max-width: 1400px;
+
+    margin: 40px auto;
+
+    padding: 0 20px;
+
+    align-items: start;
+
 }
 
-/* Professional Cards */
+
+/* =====================================================
+   CARDS
+===================================================== */
+
 .card {
+
     background: var(--card-bg);
+
     border-radius: 12px;
+
     padding: 28px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.05), 0 10px 15px -5px rgba(0,0,0,0.05);
-    border: 1px solid #e2e8f0;
+
+    border:
+        1px solid
+        rgba(99,102,241,0.2);
+
+    box-shadow:
+
+        0 10px 25px -5px
+        rgba(0,0,0,0.05),
+
+        0 8px 20px -6px
+        rgba(99,102,241,0.2);
+
 }
+
+
+.card:first-child {
+
+    position: sticky;
+
+    top: 20px;
+
+    max-height:
+        calc(100vh - 40px);
+
+    overflow-y: auto;
+
+}
+
+
+.card.big {
+
+    min-width: 0;
+
+}
+
 
 h3 {
+
     color: #0f172a;
+
     font-size: 1.25rem;
+
+    margin-top: 0;
+
     margin-bottom: 25px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
+
 }
 
-/* Styled Input Fields */
-label {
-    display: block;
-    font-size: 0.85rem;
-    font-weight: 600;
-    color: #64748b;
-    margin-bottom: 8px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
 
-input, select {
-    width: 100%;
-    padding: 12px 16px;
+/* =====================================================
+   IMAGE
+===================================================== */
+
+.illustration-box {
+
+    text-align: center;
+
     margin-bottom: 20px;
-    border: 1px solid #cbd5e1;
-    border-radius: 8px;
-    background: #ffffff;
-    font-size: 0.95rem;
-    transition: all 0.2s ease;
-    box-sizing: border-box;
+
 }
 
-input:focus, select:focus {
-    outline: none;
-    border-color: var(--primary-indigo);
-    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+
+.illustration-box img {
+
+    width: 180px;
+
+    max-width: 100%;
+
+    height: auto;
+
 }
 
-/* Premium Button */
-button {
-    width: 100%;
-    background: linear-gradient(to right, var(--primary-indigo), var(--accent-blue));
-    color: white;
-    padding: 14px;
-    border: none;
-    border-radius: 8px;
-    font-size: 1rem;
+
+/* =====================================================
+   FORM
+===================================================== */
+
+label {
+
+    display: block;
+
+    font-size: 0.85rem;
+
     font-weight: 600;
-    cursor: pointer;
-    transition: transform 0.1s ease, opacity 0.2s ease;
-    margin-top: 10px;
+
+    color: #64748b;
+
+    margin-bottom: 8px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.5px;
+
 }
+
+
+input,
+select {
+
+    width: 100%;
+
+    padding: 12px 16px;
+
+    margin-bottom: 20px;
+
+    border:
+        1px solid #cbd5e1;
+
+    border-radius: 8px;
+
+    background: #ffffff;
+
+    font-size: 0.95rem;
+
+}
+
+
+input:focus,
+select:focus {
+
+    outline: none;
+
+    border-color:
+        var(--primary-indigo);
+
+    box-shadow:
+        0 0 0 4px
+        rgba(99,102,241,0.1);
+
+}
+
+
+/* =====================================================
+   BUTTON
+===================================================== */
+
+button {
+
+    width: 100%;
+
+    background:
+        linear-gradient(
+            to right,
+            var(--primary-indigo),
+            var(--accent-blue)
+        );
+
+    color: white;
+
+    padding: 14px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    font-size: 1rem;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+}
+
 
 button:hover {
+
     opacity: 0.9;
-    transform: translateY(-1px);
+
 }
 
-button:active {
-    transform: translateY(0);
-}
 
-/* Output Area Style */
+/* =====================================================
+   OUTPUT
+===================================================== */
+
 .output-box {
+
     background: #ffffff;
+
     border-radius: 8px;
+
     padding: 25px;
-    border: 1px dashed #cbd5e1;
+
+    border:
+        1px dashed #cbd5e1;
+
     min-height: 400px;
+
     color: #334155;
-    line-height: 1.7;
-}
-/* Style the overall text flow */
-.output-box {
+
     line-height: 1.8;
-    color: #334155;
+
+    overflow-wrap: anywhere;
+
 }
 
-/* Style the Day Headers (### in Markdown) */
+
 .output-box h3 {
+
     color: #6366f1;
+
     background: #f1f5f9;
+
     padding: 10px 15px;
+
     border-radius: 6px;
+
     margin-top: 30px;
-    border-left: 4px solid #6366f1;
+
+    border-left:
+        4px solid #6366f1;
+
     font-size: 1.1rem;
+
 }
 
-/* Style Bold labels like "Goal:" or "Task:" */
+
 .output-box strong {
+
     color: #1e293b;
+
     background: #eef2ff;
+
     padding: 2px 6px;
+
     border-radius: 4px;
+
 }
 
-/* Style Lists (The bullet points) */
+
 .output-box ul {
+
     padding-left: 20px;
+
     list-style-type: none;
+
 }
+
 
 .output-box li {
+
     margin-bottom: 12px;
+
     position: relative;
+
     padding-left: 25px;
+
 }
 
-/* Add a custom checkmark or bullet icon */
+
 .output-box li::before {
+
     content: "🎯";
+
     position: absolute;
+
     left: 0;
-    font-size: 0.9rem;
-}
-/* 1. Make the main container align items to the top */
-.main {
-    display: grid;
-    grid-template-columns: 380px 1fr;
-    gap: 30px;
-    max-width: 1400px;
-    margin: 40px auto;
-    padding: 0 20px;
-    align-items: start; /* This is crucial for sticky to work */
+
 }
 
-/* 2. Make the input card stay put */
-.card:first-child {
-    position: -webkit-sticky; /* For Safari */
-    position: sticky;
-    top: 20px; /* Distance from the top of the window when scrolling */
-    max-height: calc(100vh - 80px); /* Ensures the card itself doesn't exceed screen height */
-    overflow-y: auto; /* Adds a scrollbar INSIDE the card if it's too tall for the screen */
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media (max-width: 900px) {
+
+    .main {
+
+        grid-template-columns:
+            300px minmax(0,1fr);
+
+        gap: 20px;
+
+    }
+
+    .card {
+
+        padding: 22px;
+
+    }
+
 }
 
-/* 3. Ensure the output card can grow as long as needed */
-.card.big {
-    min-height: 100vh; /* Optional: ensures it looks balanced */
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 768px) {
+
+    .header {
+
+        padding: 15px 20px;
+
+    }
+
+
+    .header h3 {
+
+        font-size: 0.9rem;
+
+    }
+
+
+    .main {
+
+        display: flex;
+
+        flex-direction: column;
+
+        width: 100%;
+
+        margin: 25px auto;
+
+        padding: 0 15px 30px;
+
+        gap: 20px;
+
+    }
+
+
+    .card {
+
+        width: 100%;
+
+        padding: 22px 18px;
+
+    }
+
+
+    /* REMOVE STICKY ON MOBILE */
+
+    .card:first-child {
+
+        position: static;
+
+        max-height: none;
+
+        overflow: visible;
+
+    }
+
+
+    .output-box {
+
+        min-height: 300px;
+
+        padding: 18px;
+
+        font-size: 14px;
+
+    }
+
+
+    .illustration-box img {
+
+        width: 150px;
+
+    }
+
 }
 
-/* 4. Remove any fixed height from the output box so the whole page scrolls */
-.output-box {
-    height: auto; 
-    min-height: 400px;
-    overflow-y: visible; /* Let the main page scroll handle the content */
+
+/* =====================================================
+   SMALL PHONES
+===================================================== */
+
+@media (max-width: 400px) {
+
+    .header {
+
+        padding: 14px 15px;
+
+    }
+
+
+    .header h3 {
+
+        font-size: 0.8rem;
+
+    }
+
+
+    .main {
+
+        padding: 0 10px 25px;
+
+    }
+
+
+    .card {
+
+        padding: 18px 15px;
+
+    }
+
+
+    h3 {
+
+        font-size: 1.1rem;
+
+    }
+
+
+    input,
+    select {
+
+        font-size: 16px;
+
+    }
+
+
+    button {
+
+        font-size: 0.95rem;
+
+    }
+
 }
-.card {
-    background: var(--card-bg);
-    border-radius: 12px;
-    padding: 28px;
-    border: 1px solid rgba(99, 102, 241, 0.2); /* Light indigo border */
-    
-    /* This creates the professional blue shadow/glow */
-    box-shadow: 
-        0 10px 25px -5px rgba(0, 0, 0, 0.05),   /* Subtle dark depth */
-        0 8px 20px -6px rgba(99, 102, 241, 0.2); /* Soft light blue glow */
-    
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+/* =====================================================
+   AI GENERATED CONTENT
+===================================================== */
+
+#output {
+    line-height: 1.7;
+    color: #1f2937;
 }
 
-/* Add a hover effect to make the glow stronger when you mouse over it */
-.card:hover {
-    transform: translateY(-5px);
-    box-shadow: 
-        0 20px 30px -10px rgba(0, 0, 0, 0.07),
-        0 12px 25px -5px rgba(99, 102, 241, 0.4); /* Stronger blue glow on hover */
+.ai-heading {
+    color: #2563eb;
+    margin-top: 28px;
+    margin-bottom: 12px;
+    font-weight: 700;
 }
-.illustration-box img {
-    width: 180px; /* Adjust based on your image size */
-    height: auto;
+
+.ai-heading:first-child {
+    margin-top: 0;
+}
+
+.ai-paragraph {
+    margin: 10px 0;
+    line-height: 1.7;
+}
+
+.ai-list {
+    margin: 10px 0 18px 25px;
+    padding-left: 15px;
+}
+
+.ai-list li {
+    margin-bottom: 8px;
+    line-height: 1.6;
+}
+
+.ai-list strong {
+    color: #1e40af;
+}
+
+.ai-divider {
+    border: none;
+    border-top: 1px solid #dbeafe;
+    margin: 25px 0;
+}
+
+
+/* =========================
+   TABLE
+========================= */
+
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    margin: 18px 0 25px;
+    border-radius: 10px;
+}
+
+.study-table {
+    width: 100%;
+    min-width: 600px;
+    border-collapse: collapse;
+    background: white;
+    font-size: 14px;
+}
+
+.study-table th {
+    background: #2563eb;
+    color: white;
+    font-weight: 600;
+    text-align: left;
+    padding: 12px 14px;
+    border: 1px solid #dbeafe;
+}
+
+.study-table td {
+    padding: 11px 14px;
+    border: 1px solid #dbeafe;
+    vertical-align: top;
+    line-height: 1.5;
+}
+
+.study-table tr:nth-child(even) {
+    background: #f8fbff;
+}
+
+.study-table tr:hover {
+    background: #eff6ff;
+}
+
+
+/* =========================
+   CODE
+========================= */
+
+#output code {
+    background: #f1f5f9;
+    padding: 3px 6px;
+    border-radius: 5px;
+    font-family: monospace;
+}
+
+
+/* =========================
+   LOADING / ERROR
+========================= */
+
+.loading-message {
+    text-align: center;
+    padding: 30px;
+    font-size: 16px;
+    color: #2563eb;
+}
+
+.error-message {
+    background: #fef2f2;
+    color: #dc2626;
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid #fecaca;
 }

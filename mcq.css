@@ -1,312 +1,652 @@
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Segoe UI',sans-serif;
+/* =====================================================
+   RESET
+===================================================== */
+
+* {
+
+    margin: 0;
+
+    padding: 0;
+
+    box-sizing: border-box;
+
+    font-family: 'Segoe UI', sans-serif;
+
 }
 
-body{
-    background:#eef3fb;
+
+body {
+
+    background: #eef3fb;
+
+    overflow-x: hidden;
+
 }
 
-/* HEADER */
 
-.navbar{
-    height:100px;
-    background:#23408e;
+/* =====================================================
+   HEADER
+===================================================== */
 
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
+.navbar {
 
-    padding:0 60px;
+    min-height: 80px;
 
-    color:white;
+    background: #23408e;
 
-    box-shadow:0 4px 10px rgba(0,0,0,.15);
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding: 18px 5%;
+
+    color: white;
+
+    box-shadow:
+        0 4px 10px rgba(0,0,0,.15);
+
 }
 
-.logo{
-    font-size:20px;
-    font-weight:700;
+
+.logo {
+
+    font-size: 20px;
+
+    font-weight: 700;
+
 }
 
-.user{
-    font-size:18px;
-    font-weight:600;
+
+.user {
+
+    font-size: 18px;
+
+    font-weight: 600;
+
 }
 
-/* MAIN */
 
-.container{
-    width:95%;
-    margin:40px auto;
+/* =====================================================
+   MAIN
+===================================================== */
 
-    display:flex;
-    gap:35px;
+.container {
+
+    width: 95%;
+
+    max-width: 1400px;
+
+    margin: 40px auto;
+
+    display: grid;
+
+    grid-template-columns:
+        350px minmax(0,1fr);
+
+    gap: 35px;
+
 }
 
-/* LEFT */
 
-.left-panel{
-    width:32%;
+/* =====================================================
+   LEFT
+===================================================== */
+
+.left-panel {
+
+    width: 100%;
+
 }
 
-.upload-card{
 
-    background:white;
+.upload-card {
 
-    padding:35px;
+    background: white;
 
-    border-radius:25px;
+    padding: 35px;
 
-    box-shadow:0 5px 20px rgba(0,0,0,.08);
+    border-radius: 25px;
+
+    box-shadow:
+        0 5px 20px rgba(0,0,0,.08);
+
 }
 
-.upload-card img{
 
-    width:220px;
+.upload-card img {
 
-    display:block;
+    width: 220px;
 
-    margin:auto;
-    margin-bottom:30px;
+    max-width: 100%;
+
+    display: block;
+
+    margin:
+        0 auto 30px;
+
 }
 
-.upload-card label{
 
-    display:block;
+.upload-card label {
 
-    margin-top:20px;
-    margin-bottom:8px;
+    display: block;
 
-    font-weight:700;
+    margin-top: 20px;
 
-    color:#4a5877;
+    margin-bottom: 8px;
+
+    font-weight: 700;
+
+    color: #4a5877;
+
 }
+
 
 .upload-card input,
-.upload-card select{
+.upload-card select {
 
-    width:100%;
+    width: 100%;
 
-    padding:14px;
+    padding: 14px;
 
-    border:none;
+    border: none;
 
-    outline:none;
+    outline: none;
 
-    border-radius:12px;
+    border-radius: 12px;
 
-    background:#edf2fa;
+    background: #edf2fa;
 
-    font-size:15px;
+    font-size: 15px;
+
 }
 
-.upload-card button{
 
-    width:100%;
+.upload-card button {
 
-    margin-top:25px;
+    width: 100%;
 
-    padding:15px;
+    margin-top: 25px;
 
-    border:none;
+    padding: 15px;
 
-    border-radius:12px;
+    border: none;
 
-    background:#3b6cf0;
+    border-radius: 12px;
 
-    color:white;
+    background: #3b6cf0;
 
-    font-size:17px;
+    color: white;
 
-    font-weight:600;
+    font-size: 17px;
 
-    cursor:pointer;
+    font-weight: 600;
 
-    transition:.3s;
+    cursor: pointer;
+
 }
 
-.upload-card button:hover{
 
-    background:#214fc9;
+.upload-card button:hover {
+
+    background: #214fc9;
+
 }
 
-/* RIGHT */
 
-.right-panel{
+/* =====================================================
+   RIGHT
+===================================================== */
 
-    flex:1;
+.right-panel {
 
-    background:white;
+    min-width: 0;
 
-    border-radius:25px;
+    background: white;
 
-    padding:35px;
+    border-radius: 25px;
 
-    box-shadow:0 5px 20px rgba(0,0,0,.08);
+    padding: 35px;
 
-    min-height:700px;
+    box-shadow:
+        0 5px 20px rgba(0,0,0,.08);
+
+    min-height: 700px;
+
 }
 
-.right-panel h2{
 
-    color:#273248;
+.right-panel h2 {
 
-    margin-bottom:20px;
+    color: #273248;
+
+    margin-bottom: 20px;
+
 }
 
-.right-panel hr{
 
-    border:none;
+.right-panel hr {
 
-    height:2px;
+    border: none;
 
-    background:#e6ebf5;
+    height: 2px;
 
-    margin-bottom:30px;
+    background: #e6ebf5;
+
+    margin-bottom: 30px;
+
 }
 
-.placeholder{
 
-    height:500px;
+/* =====================================================
+   PLACEHOLDER
+===================================================== */
 
-    display:flex;
+.placeholder {
 
-    flex-direction:column;
+    min-height: 500px;
 
-    justify-content:center;
+    display: flex;
 
-    align-items:center;
+    flex-direction: column;
 
-    text-align:center;
+    justify-content: center;
 
-    color:#9aa6bf;
+    align-items: center;
+
+    text-align: center;
+
+    color: #9aa6bf;
+
 }
 
-.placeholder h3{
 
-    margin-bottom:15px;
+.placeholder h3 {
 
-    font-size:28px;
+    margin-bottom: 15px;
+
+    font-size: 28px;
+
 }
 
-.placeholder p{
 
-    font-size:18px;
+.placeholder p {
 
-    line-height:1.7;
+    font-size: 18px;
+
+    line-height: 1.7;
+
+    max-width: 600px;
+
 }
 
-/* GENERATED QUESTIONS */
 
-.question{
+/* =====================================================
+   QUESTIONS
+===================================================== */
 
-    background:#f8faff;
+.question,
+.quiz-card {
 
-    padding:20px;
+    background: #f8faff;
 
-    border-radius:15px;
+    padding: 20px;
 
-    margin-bottom:20px;
+    border-radius: 15px;
+
+    margin-bottom: 20px;
+
 }
 
-.question h3{
 
-    color:#273248;
+.quiz-card {
 
-    margin-bottom:15px;
+    box-shadow:
+        0 4px 15px
+        rgba(0,0,0,0.08);
+
 }
 
-.option{
 
-    padding:10px;
+.question h3,
+.quiz-card h3 {
 
-    margin-bottom:10px;
+    color: #273248;
 
-    border-radius:10px;
+    margin-bottom: 15px;
 
-    background:white;
-
-    border:1px solid #dfe6f4;
 }
 
-.answer{
 
-    margin-top:10px;
+.option {
 
-    color:green;
+    display: block;
 
-    font-weight:700;
+    padding: 12px;
+
+    margin-bottom: 10px;
+
+    background: white;
+
+    border: 1px solid #dfe6f4;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+
 }
 
-.explanation{
 
-    margin-top:10px;
+.option:hover {
 
-    color:#555;
+    background: #dfe8ff;
 
-    line-height:1.6;
-}
-.quiz-card{
-    background:white;
-    padding:25px;
-    margin-bottom:25px;
-    border-radius:18px;
-    box-shadow:0 4px 15px rgba(0,0,0,0.08);
 }
 
-.quiz-card h3{
-    color:#23395d;
-    margin-bottom:15px;
+
+.option input {
+
+    margin-right: 10px;
+
 }
 
-.option{
-    display:block;
-    padding:12px;
-    margin-bottom:10px;
-    background:#f3f7ff;
-    border-radius:10px;
-    cursor:pointer;
+
+.answer {
+
+    margin-top: 10px;
+
+    color: green;
+
+    font-weight: 700;
+
 }
 
-.option:hover{
-    background:#dfe8ff;
+
+.explanation {
+
+    margin-top: 10px;
+
+    color: #555;
+
+    line-height: 1.6;
+
 }
 
-.option input{
-    margin-right:10px;
+
+.submit-btn {
+
+    width: 100%;
+
+    border: none;
+
+    padding: 16px;
+
+    margin-top: 20px;
+
+    border-radius: 12px;
+
+    background: #4f6df5;
+
+    color: white;
+
+    font-size: 18px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
 }
 
-.submit-btn{
-    width:100%;
-    border:none;
-    padding:16px;
-    margin-top:20px;
-    border-radius:12px;
-    background:#4f6df5;
-    color:white;
-    font-size:18px;
-    font-weight:600;
-    cursor:pointer;
+
+.result-card {
+
+    margin-top: 25px;
+
+    background: #e8fff0;
+
+    padding: 25px;
+
+    border-radius: 15px;
+
+    text-align: center;
+
 }
 
-.submit-btn:hover{
-    opacity:.9;
+
+.answer-box {
+
+    margin-top: 15px;
+
+    background: #fff6d9;
+
+    padding: 15px;
+
+    border-radius: 12px;
+
 }
 
-.result-card{
-    margin-top:25px;
-    background:#e8fff0;
-    padding:25px;
-    border-radius:15px;
-    text-align:center;
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media (max-width: 900px) {
+
+    .container {
+
+        grid-template-columns:
+            280px minmax(0,1fr);
+
+        gap: 20px;
+
+    }
+
+
+    .upload-card,
+    .right-panel {
+
+        padding: 25px;
+
+    }
+
 }
 
-.answer-box{
-    margin-top:15px;
-    background:#fff6d9;
-    padding:15px;
-    border-radius:12px;
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 768px) {
+
+    .navbar {
+
+        min-height: 70px;
+
+        padding: 15px 20px;
+
+    }
+
+
+    .logo {
+
+        font-size: 17px;
+
+    }
+
+
+    .user {
+
+        font-size: 14px;
+
+    }
+
+
+    .container {
+
+        display: flex;
+
+        flex-direction: column;
+
+        width: 100%;
+
+        margin: 25px auto;
+
+        padding: 0 15px 30px;
+
+        gap: 20px;
+
+    }
+
+
+    .left-panel {
+
+        width: 100%;
+
+    }
+
+
+    .upload-card {
+
+        padding: 25px 20px;
+
+        border-radius: 18px;
+
+    }
+
+
+    .upload-card img {
+
+        width: 170px;
+
+    }
+
+
+    .right-panel {
+
+        width: 100%;
+
+        padding: 22px 18px;
+
+        border-radius: 18px;
+
+        min-height: auto;
+
+    }
+
+
+    .right-panel h2 {
+
+        font-size: 21px;
+
+    }
+
+
+    .placeholder {
+
+        min-height: 300px;
+
+        padding: 20px 5px;
+
+    }
+
+
+    .placeholder h3 {
+
+        font-size: 22px;
+
+    }
+
+
+    .placeholder p {
+
+        font-size: 15px;
+
+    }
+
+
+    .question,
+    .quiz-card {
+
+        padding: 16px;
+
+    }
+
+}
+
+
+/* =====================================================
+   SMALL PHONES
+===================================================== */
+
+@media (max-width: 400px) {
+
+    .navbar {
+
+        padding: 14px 15px;
+
+    }
+
+
+    .logo {
+
+        font-size: 15px;
+
+    }
+
+
+    .user {
+
+        font-size: 12px;
+
+    }
+
+
+    .container {
+
+        padding:
+            0 10px 25px;
+
+    }
+
+
+    .upload-card,
+    .right-panel {
+
+        padding: 18px 15px;
+
+    }
+
+
+    .upload-card img {
+
+        width: 140px;
+
+    }
+
+
+    .upload-card input,
+    .upload-card select {
+
+        font-size: 16px;
+
+    }
+
+
+    .right-panel h2 {
+
+        font-size: 19px;
+
+    }
+
+
+    .option {
+
+        font-size: 14px;
+
+        padding: 11px;
+
+    }
+
 }

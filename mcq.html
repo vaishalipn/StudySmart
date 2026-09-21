@@ -2,96 +2,158 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
     <title>MCQ Practice - StudySmart</title>
 
-    <link rel="stylesheet" href="mcq.css">
+    <link rel="stylesheet"
+          href="mcq.css">
+
 </head>
+
 
 <body>
 
-    <!-- HEADER -->
 
-    <header class="navbar">
+<!-- ================= HEADER ================= -->
 
-        <div class="logo">
-            🎓 StudySmart Quiz
+<header class="navbar">
+
+    <div class="logo">
+        🎓 StudySmart Quiz
+    </div>
+
+    <div class="user">
+        Hello, Buddy 👋
+    </div>
+
+</header>
+
+
+<!-- ================= MAIN ================= -->
+
+<section class="container">
+
+
+    <!-- ================= LEFT PANEL ================= -->
+
+    <div class="left-panel">
+
+        <div class="upload-card">
+
+            <img
+                src="images/mcq-practice.png"
+                alt="MCQ">
+
+
+            <label>
+                UPLOAD PDF 📄
+            </label>
+
+            <input
+                type="file"
+                id="pdfFile"
+                accept=".pdf">
+
+
+            <label>
+                NUMBER OF QUESTIONS ❓
+            </label>
+
+            <select id="numQuestions">
+
+                <option>5</option>
+
+                <option selected>
+                    10
+                </option>
+
+                <option>15</option>
+
+                <option>20</option>
+
+            </select>
+
+
+            <label>
+                DIFFICULTY 🎯
+            </label>
+
+            <select id="difficulty">
+
+                <option>
+                    Easy
+                </option>
+
+                <option selected>
+                    Medium
+                </option>
+
+                <option>
+                    Hard
+                </option>
+
+            </select>
+
+
+            <button onclick="generateQuiz()">
+
+                ✨ Generate Quiz
+
+            </button>
+
         </div>
 
-        <div class="user">
-            Hello, Buddy 👋
-        </div>
+    </div>
 
-    </header>
 
-    <!-- MAIN -->
+    <!-- ================= RIGHT PANEL ================= -->
 
-    <section class="container">
+    <div class="right-panel">
 
-        <!-- LEFT PANEL -->
+        <h2>
+            Your Generated Quiz
+        </h2>
 
-        <div class="left-panel">
+        <hr>
 
-            <div class="upload-card">
 
-                <img src="images/mcq-practice.png" alt="MCQ">
+        <div id="quizOutput">
 
-                <label>UPLOAD PDF 📄</label>
-                <input type="file" id="pdfFile" accept=".pdf">
+            <div class="placeholder">
 
-                <label>NUMBER OF QUESTIONS ❓</label>
-                <select id="numQuestions">
-                    <option>5</option>
-                    <option selected>10</option>
-                    <option>15</option>
-                    <option>20</option>
-                </select>
+                <h3>
+                    📘 Quiz will appear here
+                </h3>
 
-                <label>DIFFICULTY 🎯</label>
-                <select id="difficulty">
-                    <option>Easy</option>
-                    <option selected>Medium</option>
-                    <option>Hard</option>
-                </select>
+                <p>
 
-                <button onclick="generateQuiz()">
-                    ✨ Generate Quiz
-                </button>
+                    Upload a PDF and click
+
+                    <strong>
+                        Generate Quiz
+                    </strong>
+
+                    to create MCQs automatically
+                    from your notes.
+
+                </p>
 
             </div>
 
         </div>
 
-        <!-- RIGHT PANEL -->
+    </div>
 
-        <div class="right-panel">
 
-            <h2>Your Generated Quiz</h2>
+</section>
 
-            <hr>
 
-            <div id="quizOutput">
-
-                <div class="placeholder">
-
-                    <h3>📘 Quiz will appear here</h3>
-
-                    <p>
-                        Upload a PDF and click
-                        <strong>Generate Quiz</strong>
-                        to create MCQs automatically from your notes.
-                    </p>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-    <script src="mcq.js"></script>
+<script src="mcq.js"></script>
 
 </body>
 
