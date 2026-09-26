@@ -1,114 +1,65 @@
+
 /* =====================================================
    VARIABLES
 ===================================================== */
 
 :root {
-
     --primary-blue: #2563eb;
-
     --navy-bg: #1e3a8a;
-
-    --light-blue-glow:
-        rgba(59,130,246,0.3);
-
-    --glass-bg:
-        rgba(255,255,255,0.95);
-
+    --light-blue-glow: rgba(59, 130, 246, 0.3);
+    --glass-bg: rgba(255, 255, 255, 0.95);
 }
-
 
 /* =====================================================
    RESET
 ===================================================== */
 
 * {
-
     box-sizing: border-box;
-
 }
-
 
 html {
-
     scroll-behavior: smooth;
-
 }
-
 
 body {
-
     margin: 0;
-
-    font-family:
-        'Segoe UI',
-        Tahoma,
-        Geneva,
-        Verdana,
-        sans-serif;
-
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #f8fafc;
-
     color: #334155;
-
     overflow-x: hidden;
-
 }
-
 
 /* =====================================================
    HEADER
 ===================================================== */
 
 .header {
-
-    background-color:
-        var(--navy-bg);
-
+    background-color: var(--navy-bg);
     padding: 15px 40px;
-
     display: flex;
-
     justify-content: space-between;
-
     align-items: center;
-
     color: white;
-
-    box-shadow:
-        0 4px 10px
-        rgba(0,0,0,0.1);
-
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
-
 
 .header h3 {
-
     margin: 0;
-
 }
 
-
 /* =====================================================
-   MAIN
+   MAIN LAYOUT
 ===================================================== */
 
 .main-container {
-
     display: grid;
-
-    grid-template-columns:
-        380px minmax(0,1fr);
-
+    grid-template-columns: 380px minmax(0, 1fr);
     gap: 30px;
-
     max-width: 1400px;
-
     margin: 40px auto;
-
     padding: 0 20px;
-
 }
-
 
 /* =====================================================
    CARDS
@@ -116,521 +67,374 @@ body {
 
 .sidebar-card,
 .content-card {
-
-    background:
-        var(--glass-bg);
-
+    min-width: 0;
+    background: var(--glass-bg);
     border-radius: 16px;
-
     padding: 30px;
-
-    border:
-        1px solid
-        rgba(226,232,240,0.8);
-
+    border: 1px solid rgba(226, 232, 240, 0.8);
     box-shadow:
-
-        0 10px 25px -5px
-        rgba(0,0,0,0.05),
-
-        0 8px 20px -6px
-        var(--light-blue-glow);
-
+        0 10px 25px -5px rgba(0, 0, 0, 0.05),
+        0 8px 20px -6px var(--light-blue-glow);
 }
-
 
 .sidebar-card {
-
     position: sticky;
-
     top: 20px;
-
     height: fit-content;
-
 }
-
 
 /* =====================================================
    IMAGE
 ===================================================== */
 
 .illustration-box {
-
     width: 100%;
-
     text-align: center;
-
     margin-bottom: 20px;
-
 }
-
 
 .illustration-box img {
-
     width: 180px;
-
     max-width: 100%;
-
     height: auto;
-
 }
-
 
 /* =====================================================
    INPUTS
 ===================================================== */
 
 .input-group {
-
     margin-bottom: 20px;
-
 }
-
 
 label {
-
     display: block;
-
     font-size: 12px;
-
     font-weight: 700;
-
     margin-bottom: 8px;
-
     color: #64748b;
-
 }
-
 
 input[type="text"],
 .file-upload {
-
     width: 100%;
-
+    min-width: 0;
     padding: 12px;
-
-    border:
-        1px solid #e2e8f0;
-
+    border: 1px solid #e2e8f0;
     border-radius: 8px;
-
     background-color: #f1f5f9;
-
 }
-
 
 input[type="text"]:focus {
-
     outline: none;
-
-    border-color:
-        var(--primary-blue);
-
+    border-color: var(--primary-blue);
 }
-
 
 .file-upload {
-
     overflow: hidden;
-
 }
-
 
 .file-upload input {
-
     width: 100%;
-
     max-width: 100%;
-
 }
-
 
 /* =====================================================
    BUTTON
 ===================================================== */
 
 .generate-btn {
-
     width: 100%;
-
     padding: 14px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #6366f1,
-            #3b82f6
-        );
-
+    background: linear-gradient(135deg, #6366f1, #3b82f6);
     color: white;
-
     border: none;
-
     border-radius: 10px;
-
     font-weight: 600;
-
     cursor: pointer;
-
+    transition: transform 0.2s, box-shadow 0.2s;
 }
-
 
 .generate-btn:hover {
-
     transform: translateY(-2px);
-
-    box-shadow:
-        0 10px 15px -3px
-        rgba(59,130,246,0.5);
-
+    box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.5);
 }
 
-
 /* =====================================================
-   OUTPUT
+   OUTPUT CONTAINER
 ===================================================== */
+
+.content-card {
+    overflow: hidden;
+}
 
 .content-card h3 {
-
     margin-top: 0;
-
-    border-bottom:
-        2px solid #f1f5f9;
-
+    border-bottom: 2px solid #f1f5f9;
     padding-bottom: 15px;
-
 }
-
 
 .output-display {
-
     min-height: 500px;
+    min-width: 0;
+    line-height: 1.7;
 
-    line-height: 1.6;
-
-    overflow-wrap: anywhere;
-
+    /* Prevent the entire output from expanding the page */
+    width: 100%;
+    max-width: 100%;
+    overflow-wrap: normal;
+    word-break: normal;
 }
 
+/* =====================================================
+   PLACEHOLDER
+===================================================== */
 
 .placeholder-text {
-
     color: #94a3b8;
-
     text-align: center;
-
     margin-top: 100px;
-
 }
 
-
-/* =====================================================
-   TABLET
-===================================================== */
-
-@media (max-width: 900px) {
-
-    .main-container {
-
-        grid-template-columns:
-            300px minmax(0,1fr);
-
-        gap: 20px;
-
-    }
-
-
-    .sidebar-card,
-    .content-card {
-
-        padding: 22px;
-
-    }
-
-}
-
-
-/* =====================================================
-   MOBILE
-===================================================== */
-
-@media (max-width: 768px) {
-
-    .header {
-
-        padding: 15px 20px;
-
-    }
-
-
-    .header h3 {
-
-        font-size: 15px;
-
-    }
-
-
-    .main-container {
-
-        display: flex;
-
-        flex-direction: column;
-
-        width: 100%;
-
-        margin: 25px auto;
-
-        padding: 0 15px 30px;
-
-        gap: 20px;
-
-    }
-
-
-    .sidebar-card {
-
-        position: static;
-
-        width: 100%;
-
-    }
-
-
-    .content-card {
-
-        width: 100%;
-
-    }
-
-
-    .sidebar-card,
-    .content-card {
-
-        padding: 22px 18px;
-
-        border-radius: 14px;
-
-    }
-
-
-    .illustration-box img {
-
-        width: 150px;
-
-    }
-
-
-    .output-display {
-
-        min-height: 300px;
-
-        font-size: 14px;
-
-    }
-
-
-    .placeholder-text {
-
-        margin-top: 60px;
-
-        line-height: 1.6;
-
-    }
-
-}
-
-
-/* =====================================================
-   SMALL PHONES
-===================================================== */
-
-@media (max-width: 400px) {
-
-    .header {
-
-        padding: 14px 15px;
-
-    }
-
-
-    .header h3 {
-
-        font-size: 13px;
-
-    }
-
-
-    .main-container {
-
-        padding:
-            0 10px 25px;
-
-    }
-
-
-    .sidebar-card,
-    .content-card {
-
-        padding: 18px 15px;
-
-    }
-
-
-    .illustration-box img {
-
-        width: 130px;
-
-    }
-
-
-    input[type="text"] {
-
-        font-size: 16px;
-
-    }
-
-
-    .generate-btn {
-
-        padding: 13px;
-
-        font-size: 14px;
-
-    }
-
-
-    .content-card h3 {
-
-        font-size: 18px;
-
-    }
-
-}
 /* =====================================================
    AI GENERATED NOTES
 ===================================================== */
 
 #notes-output {
-    line-height: 1.7;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
     color: #1f2937;
+    line-height: 1.8;
+
+    /* Keep normal words intact */
+    overflow-wrap: normal;
+    word-break: normal;
 }
 
-
-/* =========================
+/* =====================================================
    HEADINGS
-========================= */
+===================================================== */
 
-.notes-heading {
-    color: #2563eb;
-    margin-top: 28px;
-    margin-bottom: 12px;
+#notes-output .notes-heading {
+    color: #1d4ed8;
     font-weight: 700;
+    line-height: 1.4;
+    margin-top: 30px;
+    margin-bottom: 14px;
+
+    overflow-wrap: break-word;
+    word-break: normal;
 }
 
-.notes-heading:first-child {
+#notes-output h1.notes-heading {
+    font-size: 26px;
+}
+
+#notes-output h2.notes-heading {
+    font-size: 22px;
+}
+
+#notes-output h3.notes-heading {
+    font-size: 19px;
+}
+
+#notes-output .notes-heading:first-child {
     margin-top: 0;
 }
 
-
-/* =========================
+/* =====================================================
    PARAGRAPHS
-========================= */
+===================================================== */
 
-.notes-paragraph {
-    margin: 10px 0;
-    line-height: 1.7;
+#notes-output .notes-paragraph {
+    margin: 12px 0;
+    line-height: 1.8;
+    font-size: 15px;
+
+    overflow-wrap: break-word;
+    word-break: normal;
 }
 
-
-/* =========================
+/* =====================================================
    LISTS
-========================= */
+===================================================== */
 
-.notes-list {
-    margin: 10px 0 18px 25px;
-    padding-left: 15px;
+#notes-output .notes-list {
+    margin: 12px 0 20px;
+    padding-left: 28px;
 }
 
-.notes-list li {
-    margin-bottom: 8px;
-    line-height: 1.6;
+#notes-output .notes-list li {
+    margin-bottom: 10px;
+    padding-left: 4px;
+    line-height: 1.7;
+
+    overflow-wrap: break-word;
+    word-break: normal;
 }
 
-.notes-list strong {
+#notes-output .notes-list strong {
     color: #1e40af;
 }
 
-
-/* =========================
+/* =====================================================
    DIVIDER
-========================= */
+===================================================== */
 
-.notes-divider {
+#notes-output .notes-divider {
     border: none;
     border-top: 1px solid #dbeafe;
-    margin: 25px 0;
+    margin: 28px 0;
 }
 
+/* =====================================================
+   TABLE WRAPPER
+===================================================== */
 
-/* =========================
-   TABLE
-========================= */
-
-.notes-table-wrapper {
+#notes-output .notes-table-wrapper {
+    display: block;
     width: 100%;
+    max-width: 100%;
+
+    /* Horizontal scroll for wide tables */
     overflow-x: auto;
-    margin: 18px 0 25px;
+    overflow-y: hidden;
+
+    margin: 20px 0 28px;
+    border: 1px solid #dbeafe;
+    border-radius: 10px;
+
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: #93c5fd #eff6ff;
+}
+
+/* Scrollbar for Chrome and Edge */
+
+#notes-output .notes-table-wrapper::-webkit-scrollbar {
+    height: 8px;
+}
+
+#notes-output .notes-table-wrapper::-webkit-scrollbar-track {
+    background: #eff6ff;
     border-radius: 10px;
 }
 
-.notes-table {
-    width: 100%;
-    min-width: 600px;
-    border-collapse: collapse;
-    background: white;
-    font-size: 14px;
+#notes-output .notes-table-wrapper::-webkit-scrollbar-thumb {
+    background: #93c5fd;
+    border-radius: 10px;
 }
 
-.notes-table th {
+/* =====================================================
+   TABLE
+===================================================== */
+
+#notes-output .notes-table {
+    width: 100%;
+    min-width: 650px;
+
+    border-collapse: collapse;
+    border-spacing: 0;
+
+    background: #ffffff;
+    font-size: 14px;
+    line-height: 1.6;
+
+    table-layout: auto;
+}
+
+/* Table header */
+
+#notes-output .notes-table th {
     background: #2563eb;
-    color: white;
+    color: #ffffff;
+
     font-weight: 600;
     text-align: left;
-    padding: 12px 14px;
+    vertical-align: top;
+
+    padding: 14px 16px;
     border: 1px solid #dbeafe;
+
+    white-space: normal;
+    min-width: 130px;
+
+    overflow-wrap: normal;
+    word-break: normal;
 }
 
-.notes-table td {
-    padding: 11px 14px;
+/* Table cells */
+
+#notes-output .notes-table td {
+    padding: 13px 16px;
+
     border: 1px solid #dbeafe;
     vertical-align: top;
-    line-height: 1.5;
+
+    line-height: 1.6;
+    min-width: 130px;
+
+    white-space: normal;
+    overflow-wrap: break-word;
+    word-break: normal;
 }
 
-.notes-table tr:nth-child(even) {
+/* Alternating rows */
+
+#notes-output .notes-table tbody tr:nth-child(even) {
     background: #f8fbff;
 }
 
-.notes-table tr:hover {
+#notes-output .notes-table tbody tr:hover {
     background: #eff6ff;
 }
 
+/* Bold text inside tables */
 
-/* =========================
-   CODE
-========================= */
+#notes-output .notes-table strong {
+    color: #1e40af;
+}
+
+/* =====================================================
+   INLINE CODE AND CODE BLOCKS
+===================================================== */
 
 #notes-output code {
     background: #f1f5f9;
+    color: #1e40af;
+
     padding: 3px 6px;
     border-radius: 5px;
-    font-family: monospace;
+
+    font-family: Consolas, Monaco, monospace;
+    font-size: 0.9em;
+
+    overflow-wrap: break-word;
 }
 
+#notes-output pre {
+    max-width: 100%;
+    overflow-x: auto;
 
-/* =========================
+    padding: 16px;
+    border-radius: 10px;
+
+    background: #0f172a;
+    color: #f8fafc;
+
+    line-height: 1.6;
+}
+
+#notes-output pre code {
+    background: transparent;
+    color: inherit;
+    padding: 0;
+}
+
+/* =====================================================
    LOADING
-========================= */
+===================================================== */
 
 .loading-message {
     text-align: center;
@@ -639,10 +443,9 @@ input[type="text"]:focus {
     color: #2563eb;
 }
 
-
-/* =========================
+/* =====================================================
    ERROR
-========================= */
+===================================================== */
 
 .error-message {
     background: #fef2f2;
@@ -650,26 +453,139 @@ input[type="text"]:focus {
     padding: 15px;
     border-radius: 10px;
     border: 1px solid #fecaca;
+    line-height: 1.6;
 }
 
+/* =====================================================
+   TABLET
+===================================================== */
 
-/* =========================
-   MOBILE TABLE
-========================= */
-
-@media (max-width: 600px) {
-
-    .notes-table {
-        min-width: 550px;
+@media (max-width: 1100px) {
+    .main-container {
+        grid-template-columns: 320px minmax(0, 1fr);
+        gap: 20px;
     }
 
-    .notes-table th,
-    .notes-table td {
-        padding: 9px 10px;
+    .sidebar-card,
+    .content-card {
+        padding: 24px;
+    }
+}
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 768px) {
+    .header {
+        padding: 15px 20px;
+    }
+
+    .header h3 {
+        font-size: 15px;
+    }
+
+    .main-container {
+        display: flex;
+        flex-direction: column;
+
+        width: 100%;
+        margin: 25px auto;
+
+        padding: 0 15px 30px;
+        gap: 20px;
+    }
+
+    .sidebar-card {
+        position: static;
+        width: 100%;
+    }
+
+    .content-card {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .sidebar-card,
+    .content-card {
+        padding: 22px 18px;
+        border-radius: 14px;
+    }
+
+    .illustration-box img {
+        width: 150px;
+    }
+
+    .output-display {
+        min-height: 300px;
+        font-size: 14px;
+    }
+
+    #notes-output .notes-paragraph {
+        font-size: 14px;
+    }
+
+    #notes-output .notes-heading {
+        margin-top: 24px;
+    }
+
+    #notes-output .notes-table {
+        min-width: 600px;
         font-size: 13px;
     }
 
-    .notes-heading {
-        margin-top: 22px;
+    #notes-output .notes-table th,
+    #notes-output .notes-table td {
+        padding: 10px 12px;
+        min-width: 120px;
+    }
+
+    .placeholder-text {
+        margin-top: 60px;
+        line-height: 1.6;
+    }
+}
+
+/* =====================================================
+   SMALL PHONES
+===================================================== */
+
+@media (max-width: 400px) {
+    .header {
+        padding: 14px 15px;
+    }
+
+    .header h3 {
+        font-size: 13px;
+    }
+
+    .main-container {
+        padding: 0 10px 25px;
+    }
+
+    .sidebar-card,
+    .content-card {
+        padding: 18px 15px;
+    }
+
+    .illustration-box img {
+        width: 130px;
+    }
+
+    input[type="text"] {
+        font-size: 16px;
+    }
+
+    .generate-btn {
+        padding: 13px;
+        font-size: 14px;
+    }
+
+    .content-card h3 {
+        font-size: 18px;
+    }
+
+    #notes-output .notes-table {
+        min-width: 560px;
     }
 }

@@ -1,5 +1,9 @@
-async function generateNotes() {
 
+/* =====================================================
+   STUDYSMART - AI NOTES
+===================================================== */
+
+async function generateNotes() {
     const outputDiv = document.getElementById("notes-output");
 
     const subject = document.getElementById("subject").value;
@@ -29,8 +33,7 @@ async function generateNotes() {
     formData.append("pdf", pdfFile);
 
     try {
-
-        console.log("🚀 Sending notes request to Render...");
+        console.log("Sending notes request to Render...");
 
         const response = await fetch(
             "https://studysmart-backend-aec9.onrender.com/generate-notes",
@@ -40,18 +43,17 @@ async function generateNotes() {
             }
         );
 
-        console.log("📡 Response status:", response.status);
+        console.log("Response status:", response.status);
 
         const text = await response.text();
 
-        console.log("📦 Server response:", text);
+        console.log("Server response:", text);
 
         let data;
 
         try {
             data = JSON.parse(text);
         } catch (error) {
-
             outputDiv.innerHTML = `
                 <div class="error-message">
                     ❌ Server returned an unexpected response.
@@ -59,39 +61,35 @@ async function generateNotes() {
                     Status: ${response.status}
                 </div>
             `;
-
             return;
         }
 
         if (!response.ok || data.error) {
-
             outputDiv.innerHTML = `
                 <div class="error-message">
-                    ❌ ${data.error || "Something went wrong."}
+                    ❌ ${escapeNotesHTML(
+                        data.error || "Something went wrong."
+                    )}
                 </div>
             `;
-
             return;
         }
 
         if (!data.notes) {
-
             outputDiv.innerHTML = `
                 <div class="error-message">
                     ❌ No notes were returned from the server.
                 </div>
             `;
-
             return;
         }
 
-        console.log("✅ Notes received successfully");
+        console.log("Notes received successfully");
 
         outputDiv.innerHTML = formatNotes(data.notes);
 
     } catch (error) {
-
-        console.error("❌ FETCH ERROR:", error);
+        console.error("FETCH ERROR:", error);
 
         outputDiv.innerHTML = `
             <div class="error-message">
@@ -105,96 +103,119 @@ async function generateNotes() {
 
 
 /* =====================================================
+   NORMALIZE AI RESPONSE
+===================================================== */
+
+function normalizeNotesText(text) {
+    text = String(text ?? "");
+
+    // Convert escaped newline sequences to actual newlines
+    text = text
+        .replace(/\\r\\n/g, "\n")
+        .replace(/\\n/g, "\n")
+        .replace(/\\r/g, "\n");
+
+    // Convert actual HTML line breaks to newlines
+    text = text.replace(/<br\s*\/?>/gi, "\n");
+
+    // Convert escaped HTML line breaks
+    text = text.replace(
+        /&lt;br\s*\/?&gt;/gi,
+        "\n"
+    );
+
+    // Normalize Windows and old Mac line endings
+    text = text.replace(/\r\n?/g, "\n");
+
+    // Remove unwanted control characters
+    text = text.replace(
+        /[\u0000-\u0008\u000B\u000C\u000E-\u001F]/g,
+        ""
+    );
+
+    return text.trim();
+}
+
+
+/* =====================================================
    FORMAT AI NOTES
 ===================================================== */
 
-function formatNotes(text) {
+function formatNotes(rawText) {
+    // Normalize before escaping HTML
+    const normalizedText = normalizeNotesText(rawText);
 
-    // Prevent raw HTML
-    text = escapeHTML(text);
+    // Escape unsafe HTML
+    const safeText = escapeNotesHTML(normalizedText);
 
-    text = text.replace(/\r\n/g, "\n");
-
-    const lines = text.split("\n");
+    const lines = safeText.split("\n");
 
     let html = "";
     let i = 0;
 
     while (i < lines.length) {
-
         let line = lines[i].trim();
 
-        // Empty line
+        // Skip empty lines
         if (!line) {
             i++;
             continue;
         }
 
 
-        /* =========================
+        /* =========================================
            TABLE
-        ========================= */
+        ========================================= */
 
         if (
             line.includes("|") &&
             i + 1 < lines.length &&
-            isTableSeparator(lines[i + 1])
+            isNotesTableSeparator(lines[i + 1])
         ) {
-
-            const headers = parseTableRow(line);
+            const headers = parseNotesTableRow(line);
 
             i += 2;
 
-            let rows = [];
+            const rows = [];
 
             while (
                 i < lines.length &&
                 lines[i].trim() &&
                 lines[i].includes("|")
             ) {
-
-                rows.push(parseTableRow(lines[i]));
-
+                rows.push(parseNotesTableRow(lines[i]));
                 i++;
             }
 
             html += `
                 <div class="notes-table-wrapper">
-
                     <table class="notes-table">
 
                         <thead>
-
                             <tr>
-                                ${headers
-                                    .map(header => `
-                                        <th>
-                                            ${formatInline(header)}
-                                        </th>
-                                    `)
-                                    .join("")}
+                                ${headers.map(header => `
+                                    <th>
+                                        ${formatNotesInline(header)}
+                                    </th>
+                                `).join("")}
                             </tr>
-
                         </thead>
 
                         <tbody>
-
                             ${rows.map(row => `
                                 <tr>
-                                    ${row
-                                        .map(cell => `
-                                            <td>
-                                                ${formatInline(cell)}
-                                            </td>
-                                        `)
-                                        .join("")}
+                                    ${headers.map((_, index) => `
+                                        <td>
+                                            ${formatNotesInline(
+                                                row[index] || ""
+                                            )}
+                                        </td>
+                                    `).join("")}
                                 </tr>
                             `).join("")}
-
                         </tbody>
 
                     </table>
-
                 </div>
             `;
 
@@ -202,126 +223,110 @@ function formatNotes(text) {
         }
 
 
-        /* =========================
+        /* =========================================
            HEADINGS
-        ========================= */
+        ========================================= */
 
         if (/^#{1,6}\s+/.test(line)) {
+            const match = line.match(
+                /^(#{1,6})\s+(.*)$/
+            );
 
-            const match =
-                line.match(/^(#{1,6})\s+(.*)$/);
+            const level = Math.min(
+                match[1].length,
+                4
+            );
 
-            const level =
-                Math.min(match[1].length, 4);
-
-            const heading =
-                match[2];
+            const heading = match[2];
 
             html += `
                 <h${level} class="notes-heading">
-                    ${formatInline(heading)}
+                    ${formatNotesInline(heading)}
                 </h${level}>
             `;
 
             i++;
-
             continue;
         }
 
 
-        /* =========================
-           HORIZONTAL LINE
-        ========================= */
+        /* =========================================
+           HORIZONTAL DIVIDER
+        ========================================= */
 
         if (/^(-{3,}|\*{3,}|_{3,})$/.test(line)) {
-
             html += `
                 <hr class="notes-divider">
             `;
 
             i++;
-
             continue;
         }
 
 
-        /* =========================
+        /* =========================================
            BULLET LIST
-        ========================= */
+        ========================================= */
 
         if (/^[-*•]\s+/.test(line)) {
-
-            html += `
-                <ul class="notes-list">
-            `;
+            html += `<ul class="notes-list">`;
 
             while (
                 i < lines.length &&
                 /^[-*•]\s+/.test(lines[i].trim())
             ) {
-
-                const item =
-                    lines[i]
-                        .trim()
-                        .replace(/^[-*•]\s+/, "");
+                const item = lines[i]
+                    .trim()
+                    .replace(/^[-*•]\s+/, "");
 
                 html += `
                     <li>
-                        ${formatInline(item)}
+                        ${formatNotesInline(item)}
                     </li>
                 `;
 
                 i++;
             }
 
-            html += `
-                </ul>
-            `;
+            html += `</ul>`;
 
             continue;
         }
 
 
-        /* =========================
+        /* =========================================
            NUMBERED LIST
-        ========================= */
+        ========================================= */
 
         if (/^\d+[.)]\s+/.test(line)) {
-
-            html += `
-                <ol class="notes-list">
-            `;
+            html += `<ol class="notes-list">`;
 
             while (
                 i < lines.length &&
                 /^\d+[.)]\s+/.test(lines[i].trim())
             ) {
-
-                const item =
-                    lines[i]
-                        .trim()
-                        .replace(/^\d+[.)]\s+/, "");
+                const item = lines[i]
+                    .trim()
+                    .replace(/^\d+[.)]\s+/, "");
 
                 html += `
                     <li>
-                        ${formatInline(item)}
+                        ${formatNotesInline(item)}
                     </li>
                 `;
 
                 i++;
             }
 
-            html += `
-                </ol>
-            `;
+            html += `</ol>`;
 
             continue;
         }
 
 
-        /* =========================
+        /* =========================================
            NORMAL PARAGRAPH
-        ========================= */
+        ========================================= */
 
         let paragraph = line;
 
@@ -334,18 +339,17 @@ function formatNotes(text) {
             !/^[-*•]\s+/.test(lines[i].trim()) &&
             !/^\d+[.)]\s+/.test(lines[i].trim()) &&
             !lines[i].includes("|") &&
-            !/^(-{3,}|\*{3,}|_{3,})$/.test(lines[i].trim())
+            !/^(-{3,}|\*{3,}|_{3,})$/.test(
+                lines[i].trim()
+            )
         ) {
-
-            paragraph +=
-                " " + lines[i].trim();
-
+            paragraph += " " + lines[i].trim();
             i++;
         }
 
         html += `
             <p class="notes-paragraph">
-                ${formatInline(paragraph)}
+                ${formatNotesInline(paragraph)}
             </p>
         `;
     }
@@ -355,11 +359,10 @@ function formatNotes(text) {
 
 
 /* =====================================================
-   INLINE FORMATTING
+   INLINE MARKDOWN FORMATTING
 ===================================================== */
 
-function formatInline(text) {
-
+function formatNotesInline(text) {
     // Bold
     text = text.replace(
         /\*\*(.*?)\*\*/g,
@@ -383,11 +386,10 @@ function formatInline(text) {
 
 
 /* =====================================================
-   TABLE FUNCTIONS
+   TABLE HELPERS
 ===================================================== */
 
-function parseTableRow(row) {
-
+function parseNotesTableRow(row) {
     row = row.trim();
 
     if (row.startsWith("|")) {
@@ -404,8 +406,7 @@ function parseTableRow(row) {
 }
 
 
-function isTableSeparator(line) {
-
+function isNotesTableSeparator(line) {
     line = line.trim();
 
     return /^\|?\s*:?-+:?\s*(\|\s*:?-+:?\s*)+\|?$/
@@ -417,10 +418,11 @@ function isTableSeparator(line) {
    ESCAPE HTML
 ===================================================== */
 
-function escapeHTML(text) {
-
-    return text
+function escapeNotesHTML(text) {
+    return String(text)
         .replace(/&/g, "&amp;")
         .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;");
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
 }

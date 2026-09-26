@@ -1,19 +1,23 @@
+
+/* =====================================================
+   STUDYSMART - AI PLANNER CSS
+===================================================== */
+
+
 /* =====================================================
    VARIABLES
 ===================================================== */
 
 :root {
-
     --nav-bg: #2160c6;
-
     --primary-indigo: #6366f1;
-
     --accent-blue: #3b82f6;
 
     --text-main: #f8fafc;
+    --card-bg: rgba(255, 255, 255, 0.95);
 
-    --card-bg: rgba(255,255,255,0.95);
-
+    --border-color: #dbeafe;
+    --text-color: #334155;
 }
 
 
@@ -22,21 +26,14 @@
 ===================================================== */
 
 * {
-
     box-sizing: border-box;
-
 }
-
 
 html {
-
     scroll-behavior: smooth;
-
 }
 
-
 body {
-
     background-color: #f1f5f9;
 
     font-family:
@@ -46,13 +43,11 @@ body {
         sans-serif;
 
     margin: 0;
-
     padding: 0;
 
-    color: #334155;
+    color: var(--text-color);
 
     overflow-x: hidden;
-
 }
 
 
@@ -61,46 +56,35 @@ body {
 ===================================================== */
 
 .header {
-
     background: var(--nav-bg);
 
     padding: 15px 40px;
 
     display: flex;
-
     justify-content: space-between;
-
     align-items: center;
 
     color: var(--text-main);
 
-    box-shadow:
-        0 4px 12px rgba(0,0,0,0.15);
-
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-
 .header h3 {
-
     margin: 0;
 
     font-size: 1rem;
-
     font-weight: 500;
-
 }
 
 
 /* =====================================================
-   MAIN
+   MAIN LAYOUT
 ===================================================== */
 
 .main {
-
     display: grid;
 
-    grid-template-columns:
-        380px minmax(0, 1fr);
+    grid-template-columns: 380px minmax(0, 1fr);
 
     gap: 30px;
 
@@ -111,7 +95,6 @@ body {
     padding: 0 20px;
 
     align-items: start;
-
 }
 
 
@@ -120,59 +103,43 @@ body {
 ===================================================== */
 
 .card {
-
     background: var(--card-bg);
 
     border-radius: 12px;
 
     padding: 28px;
 
-    border:
-        1px solid
-        rgba(99,102,241,0.2);
+    border: 1px solid rgba(99, 102, 241, 0.2);
 
     box-shadow:
+        0 10px 25px -5px rgba(0, 0, 0, 0.05),
+        0 8px 20px -6px rgba(99, 102, 241, 0.2);
 
-        0 10px 25px -5px
-        rgba(0,0,0,0.05),
-
-        0 8px 20px -6px
-        rgba(99,102,241,0.2);
-
+    min-width: 0;
 }
 
-
 .card:first-child {
-
     position: sticky;
 
     top: 20px;
 
-    max-height:
-        calc(100vh - 40px);
+    max-height: calc(100vh - 40px);
 
     overflow-y: auto;
-
 }
-
 
 .card.big {
-
     min-width: 0;
-
+    max-width: 100%;
 }
 
-
 h3 {
-
     color: #0f172a;
 
     font-size: 1.25rem;
 
     margin-top: 0;
-
     margin-bottom: 25px;
-
 }
 
 
@@ -181,22 +148,15 @@ h3 {
 ===================================================== */
 
 .illustration-box {
-
     text-align: center;
 
     margin-bottom: 20px;
-
 }
 
-
 .illustration-box img {
-
     width: 180px;
-
     max-width: 100%;
-
     height: auto;
-
 }
 
 
@@ -205,11 +165,9 @@ h3 {
 ===================================================== */
 
 label {
-
     display: block;
 
     font-size: 0.85rem;
-
     font-weight: 600;
 
     color: #64748b;
@@ -217,45 +175,34 @@ label {
     margin-bottom: 8px;
 
     text-transform: uppercase;
-
     letter-spacing: 0.5px;
-
 }
-
 
 input,
 select {
-
     width: 100%;
 
     padding: 12px 16px;
 
     margin-bottom: 20px;
 
-    border:
-        1px solid #cbd5e1;
-
+    border: 1px solid #cbd5e1;
     border-radius: 8px;
 
     background: #ffffff;
 
     font-size: 0.95rem;
 
+    font-family: inherit;
 }
-
 
 input:focus,
 select:focus {
-
     outline: none;
 
-    border-color:
-        var(--primary-indigo);
+    border-color: var(--primary-indigo);
 
-    box-shadow:
-        0 0 0 4px
-        rgba(99,102,241,0.1);
-
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
 }
 
 
@@ -264,54 +211,46 @@ select:focus {
 ===================================================== */
 
 button {
-
     width: 100%;
 
-    background:
-        linear-gradient(
-            to right,
-            var(--primary-indigo),
-            var(--accent-blue)
-        );
+    background: linear-gradient(
+        to right,
+        var(--primary-indigo),
+        var(--accent-blue)
+    );
 
     color: white;
 
     padding: 14px;
 
     border: none;
-
     border-radius: 8px;
 
     font-size: 1rem;
-
     font-weight: 600;
 
     cursor: pointer;
 
+    transition: opacity 0.2s ease;
 }
 
-
 button:hover {
-
     opacity: 0.9;
-
 }
 
 
 /* =====================================================
-   OUTPUT
+   OUTPUT CONTAINER
 ===================================================== */
 
 .output-box {
-
     background: #ffffff;
 
     border-radius: 8px;
 
     padding: 25px;
 
-    border:
-        1px dashed #cbd5e1;
+    border: 1px dashed #cbd5e1;
 
     min-height: 400px;
 
@@ -319,72 +258,413 @@ button:hover {
 
     line-height: 1.8;
 
-    overflow-wrap: anywhere;
+    /*
+       Important:
+       Do not use overflow-wrap:anywhere here.
+       It causes normal words to break into tiny pieces.
+    */
 
+    overflow-wrap: normal;
+    word-break: normal;
+
+    min-width: 0;
+    max-width: 100%;
 }
 
 
-.output-box h3 {
+/* Make all AI-generated content fit the output area */
 
-    color: #6366f1;
+#output {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
 
-    background: #f1f5f9;
+    line-height: 1.7;
 
-    padding: 10px 15px;
+    color: #1f2937;
 
-    border-radius: 6px;
-
-    margin-top: 30px;
-
-    border-left:
-        4px solid #6366f1;
-
-    font-size: 1.1rem;
-
+    overflow-wrap: normal;
+    word-break: normal;
 }
 
 
-.output-box strong {
+/* =====================================================
+   AI HEADINGS
+===================================================== */
 
-    color: #1e293b;
+#output .ai-heading {
+    color: #2563eb;
 
-    background: #eef2ff;
-
-    padding: 2px 6px;
-
-    border-radius: 4px;
-
-}
-
-
-.output-box ul {
-
-    padding-left: 20px;
-
-    list-style-type: none;
-
-}
-
-
-.output-box li {
-
+    margin-top: 28px;
     margin-bottom: 12px;
 
-    position: relative;
+    font-weight: 700;
+    line-height: 1.4;
 
-    padding-left: 25px;
+    overflow-wrap: break-word;
+}
 
+#output .ai-heading:first-child {
+    margin-top: 0;
+}
+
+/* Prevent default global h3 styles from distorting output */
+
+#output h1,
+#output h2,
+#output h3,
+#output h4 {
+    max-width: 100%;
+    word-break: normal;
 }
 
 
-.output-box li::before {
+/* =====================================================
+   AI PARAGRAPHS
+===================================================== */
 
-    content: "🎯";
+#output .ai-paragraph {
+    margin: 12px 0;
 
-    position: absolute;
+    line-height: 1.8;
 
-    left: 0;
+    white-space: normal;
 
+    overflow-wrap: break-word;
+}
+
+/* Proper spacing between paragraphs */
+
+#output .ai-paragraph + .ai-paragraph {
+    margin-top: 14px;
+}
+
+
+/* =====================================================
+   BOLD AND ITALIC
+===================================================== */
+
+#output strong {
+    color: #1e40af;
+
+    font-weight: 700;
+
+    background: transparent;
+
+    padding: 0;
+
+    border-radius: 0;
+}
+
+#output em {
+    font-style: italic;
+}
+
+
+/* =====================================================
+   AI LISTS
+===================================================== */
+
+#output .ai-list {
+    margin: 12px 0 20px;
+
+    padding-left: 28px;
+
+    list-style-type: disc;
+}
+
+#output ol.ai-list {
+    list-style-type: decimal;
+}
+
+#output .ai-list li {
+    margin-bottom: 10px;
+
+    line-height: 1.7;
+
+    padding-left: 4px;
+
+    position: static;
+}
+
+/* Remove old emoji bullet from the original CSS */
+
+#output .ai-list li::before {
+    content: none;
+}
+
+
+/* =====================================================
+   DIVIDER
+===================================================== */
+
+#output .ai-divider {
+    border: none;
+
+    border-top: 1px solid #dbeafe;
+
+    margin: 25px 0;
+}
+
+
+/* =====================================================
+   TABLE WRAPPER
+===================================================== */
+
+/*
+   Tables scroll horizontally instead of squeezing
+   every column into a tiny space.
+*/
+
+#output .table-wrapper {
+    display: block;
+
+    width: 100%;
+    max-width: 100%;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    margin: 22px 0 28px;
+
+    border: 1px solid #dbeafe;
+    border-radius: 10px;
+
+    background: #ffffff;
+
+    -webkit-overflow-scrolling: touch;
+}
+
+/* =====================================================
+   STUDY TABLE
+===================================================== */
+
+#output .study-table {
+    width: 100%;
+
+    /*
+       Keep a readable minimum width.
+       On smaller screens, the wrapper scrolls.
+    */
+
+    min-width: 780px;
+
+    table-layout: fixed;
+
+    border-collapse: collapse;
+
+    background: #ffffff;
+
+    font-size: 14px;
+
+    line-height: 1.6;
+
+    margin: 0;
+}
+
+
+/* =====================================================
+   TABLE COLUMN WIDTHS
+===================================================== */
+
+/*
+   Study plan tables normally have five columns:
+   Day | Total Time | Study Blocks | Goal & Activities | Break
+
+   Give the activities column the most space.
+*/
+
+#output .study-table th:nth-child(1),
+#output .study-table td:nth-child(1) {
+    width: 10%;
+}
+
+#output .study-table th:nth-child(2),
+#output .study-table td:nth-child(2) {
+    width: 13%;
+}
+
+#output .study-table th:nth-child(3),
+#output .study-table td:nth-child(3) {
+    width: 15%;
+}
+
+#output .study-table th:nth-child(4),
+#output .study-table td:nth-child(4) {
+    width: 52%;
+}
+
+#output .study-table th:nth-child(5),
+#output .study-table td:nth-child(5) {
+    width: 10%;
+}
+
+
+/* =====================================================
+   TABLE HEADER
+===================================================== */
+
+#output .study-table th {
+    background: #2563eb;
+
+    color: #ffffff;
+
+    font-weight: 600;
+
+    text-align: left;
+
+    padding: 14px 16px;
+
+    border: 1px solid #dbeafe;
+
+    vertical-align: middle;
+
+    /*
+       Allow long headers to wrap at word boundaries.
+    */
+
+    overflow-wrap: break-word;
+    word-break: normal;
+
+    white-space: normal;
+}
+
+
+/* =====================================================
+   TABLE CELLS
+===================================================== */
+
+#output .study-table td {
+    padding: 14px 16px;
+
+    border: 1px solid #dbeafe;
+
+    vertical-align: top;
+
+    line-height: 1.7;
+
+    color: #334155;
+
+    /*
+       Preserve normal word structure.
+       Do not break words letter by letter.
+    */
+
+    overflow-wrap: break-word;
+    word-break: normal;
+
+    white-space: normal;
+}
+
+/* Alternating row background */
+
+#output .study-table tbody tr:nth-child(even) {
+    background: #f8fbff;
+}
+
+#output .study-table tbody tr:nth-child(odd) {
+    background: #ffffff;
+}
+
+/* Hover effect */
+
+#output .study-table tbody tr:hover {
+    background: #eff6ff;
+}
+
+
+/* =====================================================
+   TABLE CONTENT
+===================================================== */
+
+/* Paragraphs inside cells */
+
+#output .study-table p {
+    margin: 0 0 8px;
+
+    line-height: 1.7;
+}
+
+#output .study-table p:last-child {
+    margin-bottom: 0;
+}
+
+/* Lists inside table cells */
+
+#output .study-table ul,
+#output .study-table ol {
+    margin: 6px 0;
+
+    padding-left: 20px;
+}
+
+#output .study-table li {
+    margin-bottom: 6px;
+}
+
+/* Bold text inside tables */
+
+#output .study-table strong {
+    color: #1e40af;
+
+    background: transparent;
+
+    padding: 0;
+}
+
+
+/* =====================================================
+   INLINE CODE
+===================================================== */
+
+#output code {
+    background: #f1f5f9;
+
+    padding: 3px 6px;
+
+    border-radius: 5px;
+
+    font-family: Consolas, monospace;
+
+    font-size: 0.9em;
+
+    overflow-wrap: break-word;
+}
+
+
+/* =====================================================
+   LOADING MESSAGE
+===================================================== */
+
+.loading-message {
+    text-align: center;
+
+    padding: 30px;
+
+    font-size: 16px;
+
+    color: #2563eb;
+
+    line-height: 1.6;
+}
+
+
+/* =====================================================
+   ERROR MESSAGE
+===================================================== */
+
+.error-message {
+    background: #fef2f2;
+
+    color: #dc2626;
+
+    padding: 15px;
+
+    border-radius: 10px;
+
+    border: 1px solid #fecaca;
+
+    line-height: 1.6;
 }
 
 
@@ -392,21 +672,20 @@ button:hover {
    TABLET
 ===================================================== */
 
-@media (max-width: 900px) {
+@media (max-width: 1100px) {
 
     .main {
-
-        grid-template-columns:
-            300px minmax(0,1fr);
+        grid-template-columns: 300px minmax(0, 1fr);
 
         gap: 20px;
-
     }
 
     .card {
-
         padding: 22px;
+    }
 
+    .output-box {
+        padding: 20px;
     }
 
 }
@@ -419,21 +698,14 @@ button:hover {
 @media (max-width: 768px) {
 
     .header {
-
         padding: 15px 20px;
-
     }
-
 
     .header h3 {
-
         font-size: 0.9rem;
-
     }
 
-
     .main {
-
         display: flex;
 
         flex-direction: column;
@@ -445,47 +717,56 @@ button:hover {
         padding: 0 15px 30px;
 
         gap: 20px;
-
     }
-
 
     .card {
-
         width: 100%;
 
-        padding: 22px 18px;
+        max-width: 100%;
 
+        padding: 22px 18px;
     }
 
-
-    /* REMOVE STICKY ON MOBILE */
+    /* Remove sticky form on mobile */
 
     .card:first-child {
-
         position: static;
 
         max-height: none;
 
         overflow: visible;
-
     }
 
+    .card.big {
+        width: 100%;
+        min-width: 0;
+    }
 
     .output-box {
+        width: 100%;
+
+        min-width: 0;
 
         min-height: 300px;
 
         padding: 18px;
 
         font-size: 14px;
-
     }
 
+    #output .study-table {
+        min-width: 780px;
+
+        font-size: 13px;
+    }
+
+    #output .study-table th,
+    #output .study-table td {
+        padding: 12px;
+    }
 
     .illustration-box img {
-
         width: 150px;
-
     }
 
 }
@@ -498,172 +779,41 @@ button:hover {
 @media (max-width: 400px) {
 
     .header {
-
         padding: 14px 15px;
-
     }
-
 
     .header h3 {
-
         font-size: 0.8rem;
-
     }
-
 
     .main {
-
         padding: 0 10px 25px;
-
     }
-
 
     .card {
-
         padding: 18px 15px;
-
     }
-
 
     h3 {
-
         font-size: 1.1rem;
-
     }
-
 
     input,
     select {
-
         font-size: 16px;
-
     }
-
 
     button {
-
         font-size: 0.95rem;
-
     }
 
-}
-/* =====================================================
-   AI GENERATED CONTENT
-===================================================== */
+    .output-box {
+        padding: 14px;
+    }
 
-#output {
-    line-height: 1.7;
-    color: #1f2937;
-}
+    #output .study-table th,
+    #output .study-table td {
+        padding: 10px;
+    }
 
-.ai-heading {
-    color: #2563eb;
-    margin-top: 28px;
-    margin-bottom: 12px;
-    font-weight: 700;
-}
-
-.ai-heading:first-child {
-    margin-top: 0;
-}
-
-.ai-paragraph {
-    margin: 10px 0;
-    line-height: 1.7;
-}
-
-.ai-list {
-    margin: 10px 0 18px 25px;
-    padding-left: 15px;
-}
-
-.ai-list li {
-    margin-bottom: 8px;
-    line-height: 1.6;
-}
-
-.ai-list strong {
-    color: #1e40af;
-}
-
-.ai-divider {
-    border: none;
-    border-top: 1px solid #dbeafe;
-    margin: 25px 0;
-}
-
-
-/* =========================
-   TABLE
-========================= */
-
-.table-wrapper {
-    width: 100%;
-    overflow-x: auto;
-    margin: 18px 0 25px;
-    border-radius: 10px;
-}
-
-.study-table {
-    width: 100%;
-    min-width: 600px;
-    border-collapse: collapse;
-    background: white;
-    font-size: 14px;
-}
-
-.study-table th {
-    background: #2563eb;
-    color: white;
-    font-weight: 600;
-    text-align: left;
-    padding: 12px 14px;
-    border: 1px solid #dbeafe;
-}
-
-.study-table td {
-    padding: 11px 14px;
-    border: 1px solid #dbeafe;
-    vertical-align: top;
-    line-height: 1.5;
-}
-
-.study-table tr:nth-child(even) {
-    background: #f8fbff;
-}
-
-.study-table tr:hover {
-    background: #eff6ff;
-}
-
-
-/* =========================
-   CODE
-========================= */
-
-#output code {
-    background: #f1f5f9;
-    padding: 3px 6px;
-    border-radius: 5px;
-    font-family: monospace;
-}
-
-
-/* =========================
-   LOADING / ERROR
-========================= */
-
-.loading-message {
-    text-align: center;
-    padding: 30px;
-    font-size: 16px;
-    color: #2563eb;
-}
-
-.error-message {
-    background: #fef2f2;
-    color: #dc2626;
-    padding: 15px;
-    border-radius: 10px;
-    border: 1px solid #fecaca;
 }

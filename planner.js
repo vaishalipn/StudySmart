@@ -1,5 +1,9 @@
-async function generatePlan() {
 
+/* =====================================================
+   STUDYSMART - AI STUDY PLANNER
+===================================================== */
+
+async function generatePlan() {
     const outputDiv = document.getElementById("output");
 
     const className = document.getElementById("class").value;
@@ -9,6 +13,7 @@ async function generatePlan() {
     const days = document.getElementById("days").value;
     const pdfFile = document.getElementById("pdfFile").files[0];
 
+    // Validate required fields
     if (!className || !subject || !topic || !hours || !days) {
         outputDiv.innerHTML = `
             <div class="error-message">
@@ -18,6 +23,7 @@ async function generatePlan() {
         return;
     }
 
+    // Show loading message
     outputDiv.innerHTML = `
         <div class="loading-message">
             ✨ Smart AI is creating your personalized study plan...
@@ -37,8 +43,7 @@ async function generatePlan() {
     }
 
     try {
-
-        console.log("🚀 Sending request to Render backend...");
+        console.log("Sending request to Render backend...");
 
         const response = await fetch(
             "https://studysmart-backend-aec9.onrender.com/generate-plan",
@@ -48,18 +53,17 @@ async function generatePlan() {
             }
         );
 
-        console.log("📡 Response status:", response.status);
+        console.log("Response status:", response.status);
 
         const text = await response.text();
 
-        console.log("📦 Server response:", text);
+        console.log("Server response:", text);
 
         let data;
 
         try {
             data = JSON.parse(text);
         } catch (error) {
-
             outputDiv.innerHTML = `
                 <div class="error-message">
                     Server returned an unexpected response.
@@ -67,39 +71,33 @@ async function generatePlan() {
                     Status: ${response.status}
                 </div>
             `;
-
             return;
         }
 
         if (!response.ok || data.error) {
-
             outputDiv.innerHTML = `
                 <div class="error-message">
-                    ❌ ${data.error || "Something went wrong."}
+                    ❌ ${escapeHTML(data.error || "Something went wrong.")}
                 </div>
             `;
-
             return;
         }
 
         if (!data.plan) {
-
             outputDiv.innerHTML = `
                 <div class="error-message">
                     ❌ No study plan was returned.
                 </div>
             `;
-
             return;
         }
 
-        console.log("✅ Study plan received");
+        console.log("Study plan received");
 
         outputDiv.innerHTML = formatAIResponse(data.plan);
 
     } catch (error) {
-
-        console.error("❌ FETCH ERROR:", error);
+        console.error("FETCH ERROR:", error);
 
         outputDiv.innerHTML = `
             <div class="error-message">
@@ -113,75 +111,112 @@ async function generatePlan() {
 
 
 /* =====================================================
+   NORMALIZE AI RESPONSE
+   Fix escaped newlines and HTML line breaks
+===================================================== */
+
+function normalizeAIText(text) {
+    if (typeof text !== "string") {
+        text = String(text ?? "");
+    }
+
+    // Convert escaped newline characters into real newlines.
+    // Handles AI output containing literal \n or \r\n.
+    text = text
+        .replace(/\\r\\n/g, "\n")
+        .replace(/\\n/g, "\n")
+        .replace(/\\r/g, "\n");
+
+    // Convert actual HTML <br> tags into newlines
+    text = text.replace(/<br\s*\/?>/gi, "\n");
+
+    // Convert escaped HTML break tags such as &lt;br&gt;
+    text = text.replace(
+        /&lt;br\s*\/?&gt;/gi,
+        "\n"
+    );
+
+    // Normalize Windows and old Mac line endings
+    text = text.replace(/\r\n?/g, "\n");
+
+    // Remove unwanted control characters
+    text = text.replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F]/g, "");
+
+    return text.trim();
+}
+
+
+/* =====================================================
    FORMAT AI RESPONSE
 ===================================================== */
 
-function formatAIResponse(text) {
+function formatAIResponse(rawText) {
+    // Normalize first, before escaping HTML
+    const normalizedText = normalizeAIText(rawText);
 
-    // Prevent raw HTML from the AI being inserted
-    text = escapeHTML(text);
+    // Escape HTML to prevent raw HTML from the AI
+    const safeText = escapeHTML(normalizedText);
 
-    text = text.replace(/\r\n/g, "\n");
-
-    const lines = text.split("\n");
+    const lines = safeText.split("\n");
 
     let html = "";
     let i = 0;
 
     while (i < lines.length) {
-
         let line = lines[i].trim();
 
-        // Empty line
+        // Skip empty lines
         if (!line) {
             i++;
             continue;
         }
 
-
-        /* =========================
-           TABLE
-        ========================= */
+        /* =========================================
+           MARKDOWN TABLE
+        ========================================= */
 
         if (
             line.includes("|") &&
             i + 1 < lines.length &&
             isTableSeparator(lines[i + 1])
         ) {
-
             const headers = parseTableRow(line);
 
             i += 2;
 
-            let rows = [];
+            const rows = [];
 
             while (
                 i < lines.length &&
                 lines[i].trim() &&
                 lines[i].includes("|")
             ) {
-
                 rows.push(parseTableRow(lines[i]));
                 i++;
             }
 
+            // Render table with horizontally scrollable wrapper
             html += `
                 <div class="table-wrapper">
                     <table class="study-table">
                         <thead>
                             <tr>
-                                ${headers
-                                    .map(header => `<th>${formatInline(header)}</th>`)
-                                    .join("")}
+                                ${headers.map(header => `
+                                    <th>
+                                        ${formatInline(header)}
+                                    </th>
+                                `).join("")}
                             </tr>
                         </thead>
 
                         <tbody>
                             ${rows.map(row => `
                                 <tr>
-                                    ${row
-                                        .map(cell => `<td>${formatInline(cell)}</td>`)
-                                        .join("")}
+                                    ${headers.map((_, index) => `
+                                        <td>
+                                            ${formatInline(row[index] || "")}
+                                        </td>
+                                    `).join("")}
                                 </tr>
                             `).join("")}
                         </tbody>
@@ -192,13 +227,11 @@ function formatAIResponse(text) {
             continue;
         }
 
-
-        /* =========================
+        /* =========================================
            HEADINGS
-        ========================= */
+        ========================================= */
 
         if (/^#{1,6}\s+/.test(line)) {
-
             const match = line.match(/^(#{1,6})\s+(.*)$/);
 
             const level = Math.min(match[1].length, 4);
@@ -214,33 +247,28 @@ function formatAIResponse(text) {
             continue;
         }
 
-
-        /* =========================
-           HORIZONTAL LINE
-        ========================= */
+        /* =========================================
+           HORIZONTAL DIVIDER
+        ========================================= */
 
         if (/^(-{3,}|\*{3,}|_{3,})$/.test(line)) {
-
             html += `<hr class="ai-divider">`;
 
             i++;
             continue;
         }
 
-
-        /* =========================
+        /* =========================================
            BULLET LIST
-        ========================= */
+        ========================================= */
 
         if (/^[-*•]\s+/.test(line)) {
-
             html += `<ul class="ai-list">`;
 
             while (
                 i < lines.length &&
                 /^[-*•]\s+/.test(lines[i].trim())
             ) {
-
                 const item = lines[i]
                     .trim()
                     .replace(/^[-*•]\s+/, "");
@@ -257,20 +285,17 @@ function formatAIResponse(text) {
             continue;
         }
 
-
-        /* =========================
+        /* =========================================
            NUMBERED LIST
-        ========================= */
+        ========================================= */
 
         if (/^\d+[.)]\s+/.test(line)) {
-
             html += `<ol class="ai-list">`;
 
             while (
                 i < lines.length &&
                 /^\d+[.)]\s+/.test(lines[i].trim())
             ) {
-
                 const item = lines[i]
                     .trim()
                     .replace(/^\d+[.)]\s+/, "");
@@ -287,10 +312,9 @@ function formatAIResponse(text) {
             continue;
         }
 
-
-        /* =========================
+        /* =========================================
            NORMAL PARAGRAPH
-        ========================= */
+        ========================================= */
 
         let paragraph = line;
 
@@ -305,9 +329,7 @@ function formatAIResponse(text) {
             !lines[i].includes("|") &&
             !/^(-{3,}|\*{3,}|_{3,})$/.test(lines[i].trim())
         ) {
-
             paragraph += " " + lines[i].trim();
-
             i++;
         }
 
@@ -327,20 +349,19 @@ function formatAIResponse(text) {
 ===================================================== */
 
 function formatInline(text) {
-
-    // Bold
+    // Bold text: **text**
     text = text.replace(
         /\*\*(.*?)\*\*/g,
         "<strong>$1</strong>"
     );
 
-    // Italic
+    // Italic text: *text*
     text = text.replace(
         /(?<!\*)\*([^*]+)\*(?!\*)/g,
         "<em>$1</em>"
     );
 
-    // Inline code
+    // Inline code: `code`
     text = text.replace(
         /`([^`]+)`/g,
         "<code>$1</code>"
@@ -355,7 +376,6 @@ function formatInline(text) {
 ===================================================== */
 
 function parseTableRow(row) {
-
     row = row.trim();
 
     if (row.startsWith("|")) {
@@ -373,7 +393,6 @@ function parseTableRow(row) {
 
 
 function isTableSeparator(line) {
-
     line = line.trim();
 
     return /^\|?\s*:?-+:?\s*(\|\s*:?-+:?\s*)+\|?$/.test(line);
@@ -385,9 +404,10 @@ function isTableSeparator(line) {
 ===================================================== */
 
 function escapeHTML(text) {
-
-    return text
+    return String(text)
         .replace(/&/g, "&amp;")
         .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;");
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
 }
